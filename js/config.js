@@ -4,20 +4,35 @@ let respecConfig = {
   license: "cc-by",
   specStatus: "DEF",
   specType: "HR",
-  pubDomain: "dk",
-  shortName: "template",
-  publishDate: "2023-06-21",
-  publishVersion: "0.0.3",
+  pubDomain: "api",
+  shortName: "oidc",
+  publishDate: "2023-09-11",
+  publishVersion: "1.0.1",
   
-  previousVersion: "0.0.2",
-  previousPublishDate: "2022-06-24",
+  previousVersion: "1.0",
+  previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
-  title: "titleText",
-  content: {"ch01": "informative", "ch02": "", "mermaid": ""},
+  title: "NL GOV Assurance profile for OpenID Connect",
+  content: {"NLGov-OpenIDConnect-profile": "informative", "Appendix": "informative"},
   editors:
     [
       {
-        name: "Logius Standaarden",
+        name: "Remco Schaar",
+        company: "Logius",
+        companyURL: "https://github.com/Logius-standaarden",
+      },
+      {
+        name: "Frank van Es",
+        company: "Logius",
+        companyURL: "https://github.com/Logius-standaarden",
+      },
+      {
+        name: "Pieter Hering",
+        company: "Logius",
+        companyURL: "https://github.com/Logius-standaarden",
+      },
+      {
+        name: "Martin van der Plas",
         company: "Logius",
         companyURL: "https://github.com/Logius-standaarden",
       }
@@ -25,10 +40,25 @@ let respecConfig = {
   authors:
     [
       {
-        name: "Logius Standaarden",
+        name: "Remco Schaar",
         company: "Logius",
         companyURL: "https://github.com/Logius-standaarden",
-      }
+      },
+      {
+        name: "Frank van Es",
+        company: "Logius",
+        companyURL: "https://github.com/Logius-standaarden",
+      },
+      {
+        name: "Joris Joosten",
+        company: "VZVZ",
+        companyURL: "https://www.vzvz.nl/",
+      },
+      {
+        name: "Jan Geert Koops",
+        company: "Dictu",
+        companyURL: "https://www.dictu.nl/",
+      }      
     ],
   github: "https://github.com/Logius-standaarden/ReSpec-template",
 
