@@ -6,14 +6,14 @@ let respecConfig = {
   specType: "HR",
   pubDomain: "api",
   shortName: "oidc",
-  publishDate: "2023-09-11",
+  publishDate: "2023-09-15",
   publishVersion: "1.0.1",
   
   previousVersion: "1.0",
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
   title: "NL GOV Assurance profile for OpenID Connect",
-  content: {"NLGov-OpenIDConnect-profile": "informative", "Appendix": "informative"},
+  content: {"NLGovOpenID": "", "Appendix": ""},
   editors:
     [
       {
@@ -67,7 +67,7 @@ let respecConfig = {
   alternateFormats: [
       {
           label: "pdf",
-          uri: "template.pdf",
+          uri: "NLGov-OpenIDConnect-profile.pdf",
       },
   ],
 };
