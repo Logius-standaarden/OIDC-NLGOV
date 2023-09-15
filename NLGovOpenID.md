@@ -365,7 +365,7 @@ The Token Response includes an Access Token (which can be used to make a UserInf
 > REQUIRED. The identifier of the authenticated End-User, also known as the subject. OpenID Providers MUST support a pairwise identifier in accordance with the OpenID Connect specification [[OpenID.Core]], section 8.1. See [Pairwise Identifiers](#pairwise-identifiers) on when it may be useful to relax this requirement. Identical as in [[OpenID.iGov]].
 
 `sub_id_type`
-> OPTIONAL. The type of identifier passed in the `sub` Claim. In order to support multiple types of identifiers in an interoperable way, the type of identifier used for the identifier in the `sub` Claim SHOULD be explicitly included. The value of the `sub_id_type` MUST be a URI. Values supported by the OpenID Provider are provided via the [Discovery endpoint](#discovery-endpointdiscovery).
+> OPTIONAL. The type of identifier passed in the `sub` Claim. In order to support multiple types of identifiers in an interoperable way, the type of identifier used for the identifier in the `sub` Claim SHOULD be explicitly included. The value of the `sub_id_type` MUST be a URI. Values supported by the OpenID Provider are provided via the [Discovery endpoint](#discovery-endpoint).
 
 `acr`
 > OPTIONAL. The LoA the End-User was authenticated at. MUST be at least the requested Level of Assurance value requested by the Client (either via the `acr_values` or `claims` parameters) or - if none was requested - a Level of Assurance established through prior agreement. See also [Section 5.2.3](#authentication-context). As eIDAS is leading in most scenarios targeted by this profile, using the `acr` Claim to express the Level of Assurance is preferred over Vectors of Trust (`vot`).
