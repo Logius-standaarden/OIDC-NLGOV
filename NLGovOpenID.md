@@ -27,7 +27,7 @@ In addition to the above terminology, this profile defines the following terms:
 
 - "Representation", "Representation Relationship", "eIDAS".
 
-Definitions for these terms as well as for the abbreviations used throughout this specification are listed in the [Glossary](#a-glossary).
+Definitions for these terms as well as for the abbreviations used throughout this specification are listed in the Glossary.
 
 ## Conformance
 
@@ -107,8 +107,9 @@ The Authorization Code Flow returns an Authorization Code to the Client, which c
 The flow described by these steps is illustrated as follows:
 
 <figure id='authorization_code_flow'>
-  <img src='media/authorization-code-flow.png' width="479" />
+  <img src='media/authorization-code-flow.png' alt="authorization code flow" width="479" />
   <figcaption>Authorization Code Flow</figcaption>
+
 </figure>
 
 ## OpenID Client profile
