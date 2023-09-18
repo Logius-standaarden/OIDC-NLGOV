@@ -60,7 +60,7 @@ let respecConfig = {
         companyURL: "https://www.dictu.nl/",
       }      
     ],
-  github: "https://github.com/Logius-standaarden/ReSpec-template",
+  github: "https://github.com/Logius-standaarden/OIDC-NLGOV/",
 
 
   // Create PDF and link to file in header (optional):
