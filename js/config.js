@@ -228,7 +228,7 @@ published: "The OpenID Foundation",
       publisher: "Logius",
     },
     "SG.TLS": {
-      href: "https://english.ncsc.nl/publications/publications/2019/juni/01/it-security-guidelines-for-transport-layer-security-tls",
+      href: "https://english.ncsc.nl/publications?keyword=IT+Security+Guidelines+for+Transport+Layer+Security&start-date=&end-date=&topic=All+topics&type=All+publications",
       title: " IT Security Guidelines for Transport Layer Security (TLS)",
       authors: [""],
       date: "23-05-2019",

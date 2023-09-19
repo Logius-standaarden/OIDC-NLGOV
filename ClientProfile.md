@@ -84,6 +84,7 @@ Request Parameters:
 - REQUIRED. Code challenge as in PKCE [[RFC7636]].
 
 `code_challenge_method`
+
 - REQUIRED. MUST use the value of `S256`.
 
 <aside class="example">
@@ -114,6 +115,7 @@ Request Objects MUST be signed by the Client's registered key. Request Objects M
 All Clients MUST validate the following in received Authentication Responses:
 
 `state`
+
 - The `state` response parameter MUST be present and MUST equal the `state` request parameter sent in the Authentication Request.
 
 This in line with OpenID Connect Core ([[OpenID.Core]], Section 3.1.2.7), which equals to OAuth 2.0 ([[RFC6749]], Section 4.1.2 and 10.12). Verifying the `state` returned in the Authorization Response is part of CSRF mitigation measures and will help prevent attacks with late or stale responses, among others.
@@ -138,21 +140,27 @@ The following describes the supported parameters for the Token Request. Some of 
 The following parameters are specified:
 
 `grant_type`
+
 - REQUIRED. MUST contain the value `authorization_code`. Identical as in [[OAuth2.NLGov]].
   
 `code`
+
 - REQUIRED. The value of the `code` parameter returned in the Authorization Response. Clients MUST NOT use the same authorization code more than once. Identical as in [[OAuth2.NLGov]].
 
 `client_assertion`
+
 - REQUIRED, in case `private_key_jwt` is used for Client Authentication. The value of the signed Client Authentication JWT generated as described in [[OAuth2.NLGov]]. The OpenID Client MUST generate a new assertion JWT for each call to the Token Endpoint.  
 
 `client_assertion_type`
+
 - REQUIRED, in case `client_assertion` is present. MUST be set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
   
 `client_id`
+
 - REQUIRED, in case mutually authenticated TLS is used for Client Authentication.
 
 `code_verifier`
+
 - REQUIRED. Code verifier as in PKCE [[RFC7636]].
 
 ### Token Response Validation
@@ -172,21 +180,27 @@ All Clients MUST validate the signature of an ID Token before accepting it. Vali
 Clients MUST verify the following in received ID tokens:
 
 `iss`
+
 - The `issuer` Claim is the Uniform Resource Locater (URL) of the expected Issuer. Identical as in [[OpenID.iGov]].
 
 `aud`
+
 - The `audience` Claim contains the Client ID of the Client. Identical as in [[OpenID.iGov]].
 
 `nonce`
+
 - The `nonce` parameter in the ID Token MUST equal the `nonce` request parameter sent in the Authentication Request. This is in line with [[OpenID.Core]], Section 3.1.3.7.
 
 `exp`, `iat`, `nbf`
+
 - The `expiration`, `issued at`, and `not before` timestamps for the token are within acceptable ranges. These Claims are formatted as Unix Time Stamps (number of seconds since 1970-01-01T00:00:00Z UTC). Values for `iat` and `nbf` MUST lie in the past and `exp` MUST lie in the future; the acceptable range for how far away `iat` is in the past is specific to the Client. This is in line with [[OpenID.iGov]].
 
 `acr`
+
 - The Level of Assurance received in the `acr` Claim is at least the Level of Assurance requested. See also [Section 5.2.3](#authentication-context). This is in line with [[OpenID.Core]], Section 3.1.3.7.
 
 `represents`
+
 - The `represents` Claim, if applicable, identifies the represented service consumer on behalf of which the End-User intends to authenticate. Any Client MUST be able to process `represents` Claims. As an exception, `represents` Claims MAY be ignored by the Client if, and only if, it is explicitly agreed upon beforehand that no Representation will be provided.
 
 ## Discovery
