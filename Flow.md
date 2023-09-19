@@ -8,7 +8,7 @@ The Implicit Flow and Hybrid Flow allow tokens to be obtained from the Authoriza
 
 Therefore, the Implicit Flow and Hybrid flow MUST NOT be used. Also, the IETF OAuth Working Group is removing support for the Implicit Flow from the OAuth 2.1 specification [[?OAuth2.1]] for the same reasons.
 
-### Authorization Code Flow
+## Authorization Code Flow
 
 The Authorization Code Flow returns an Authorization Code to the Client, which can then exchange it for an ID Token and an Access Token directly. The flow comprises the following steps:
 
