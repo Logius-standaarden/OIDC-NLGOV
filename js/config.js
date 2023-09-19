@@ -13,7 +13,8 @@ let respecConfig = {
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
   title: "NL GOV profile for OpenID Connect",
-  content: {"NLGovOpenID": ""},
+  // content: {"NLGovOpenID": ""},
+  content: {"Introduction": "", "UseCase": "", "Flow": "", "ClientProfile": "", "ProviderProfile": "", "UserInfo": "", "Considerations": "", "Appendix": "informative" },
   editors:
     [
       {
