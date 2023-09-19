@@ -99,7 +99,7 @@ let respecConfig = {
       publisher: "eIDAS Coorperation Network"
     },
     "LO.GBA": {
-      href: "h https://www.rvig.nl/logisch-ontwerp-brp ",
+      href: "https://www.rvig.nl/logisch-ontwerp-brp ",
       title: " Logisch ontwerp BRP",
       authors: [""],
       date: "July 2023",
