@@ -7,5 +7,5 @@ security, provide greater interoperability, and structure deployments in a
 manner specifically applicable to (but not limited to) government and public
 service domains in The Netherlands.
 
-This profile builds on top of, and inherits all properties of, the NL GOV 
+This profile builds on top of, and inherits all properties of, the NL GOV
 Assurance profile for OAuth 2.0 [[OAuth2.NLGov]].
