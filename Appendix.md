@@ -40,8 +40,7 @@ Representation Relationship
     <abbr title="Cross-Site Scripting">XSS</abbr>
 </div>
 
-
-# Notices
+## Notices
 The technology described in this specification was made available from contributions from various sources, including members of the OpenID Foundation (OIDF), the Internet Engineering Task Force (IETF) and others.
 
 ## Acknowledgements
