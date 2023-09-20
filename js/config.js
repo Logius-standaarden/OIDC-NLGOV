@@ -94,7 +94,7 @@ let respecConfig = {
       publisher: "OASIS",
     },
     "eIDAS.SAML": {
-      href: "https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf",
+      href: "https://ec.europa.eu/digital-building-blocks/wikis/download/attachments/467109280/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf",
       title: "eIDAS SAML Message Format",
       publisher: "eIDAS Coorperation Network"
     },
