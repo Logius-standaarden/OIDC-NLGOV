@@ -12,7 +12,7 @@ let respecConfig = {
   previousVersion: "1.0",
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
-  title: "NL GOV profile for OpenID Connect",
+  title: "OpenID NLGov",
   // content: {"NLGovOpenID": ""},
   content: {"Introduction": "", "UseCase": "", "Flow": "", "ClientProfile": "", "ProviderProfile": "", "UserInfo": "", "Considerations": "", "Appendix": "informative" },
   editors:
@@ -73,7 +73,7 @@ let respecConfig = {
   alternateFormats: [
       {
           label: "pdf",
-          uri: "NLGov-OpenIDConnect-profile.pdf",
+          uri: "OpenID-NLGov.pdf",
       },
   ],
   localBiblio: {
@@ -94,7 +94,7 @@ let respecConfig = {
       publisher: "OASIS",
     },
     "eIDAS.SAML": {
-      href: "https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf",
+      href: "https://ec.europa.eu/digital-building-blocks/wikis/download/attachments/467109280/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf",
       title: "eIDAS SAML Message Format",
       publisher: "eIDAS Coorperation Network"
     },
@@ -203,14 +203,22 @@ let respecConfig = {
       date: "2018",
       publisher: "The OpenID Foundation",
     },
-"OpenID.Federation": {
-href: "https://openid.net/specs/openid-connect-federation-1_0-12.html",
-title: "OpenID Connect Federation 1.0 - draft 12",
-authors: [
-"R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
-date: "June 30, 2020",
-published: "The OpenID Foundation",
-},
+    "OpenID.NLGov": {
+      href: "https://logius.gitlab.io/oidc/",
+      title: "NL GOV Assurance profile for OpenID Connect 1.0",
+      authors: [
+        "R. Schaar", "F. van Es", "J. Joosten", "J. G. Koops"],
+      date: "2021",
+      publisher: "Logius",
+    },
+    "OpenID.Federation": {
+      href: "https://openid.net/specs/openid-connect-federation-1_0-12.html",
+      title: "OpenID Connect Federation 1.0 - draft 12",
+      authors: [
+      "R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
+      date: "June 30, 2020",
+      published: "The OpenID Foundation",
+    },
     "PKI-CA": {
       href: "https://www.logius.nl/diensten/pkioverheid/aansluiten-als-tsp/toegetreden-vertrouwensdienstverleners",
       title:
@@ -228,18 +236,18 @@ published: "The OpenID Foundation",
       publisher: "Logius",
     },
     "SG.TLS": {
-      href: "https://english.ncsc.nl/publications?keyword=IT+Security+Guidelines+for+Transport+Layer+Security&start-date=&end-date=&topic=All+topics&type=All+publications",
-      title: " IT Security Guidelines for Transport Layer Security (TLS)",
+      href: "https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1",
+      title: " IT Security Guidelines for Transport Layer Security (TLS) v2.1",
       authors: [""],
-      date: "23-05-2019",
+      date: "19-01-2021",
       publisher: "NCSC",
     },
     "SG.LoA": {
-href: "https://www.forumstandaardisatie.nl/sites/default/files/BFS/4-basisinformatie/publicaties/Assurance-levels-for-digital-service-provision.pdf",
-title: "Assurance level for digital service provision",
-authors: [""],
-date: "September 2017",
-publisher: "The Standardisation Forum (NL)",
+      href: "https://www.forumstandaardisatie.nl/sites/default/files/BFS/4-basisinformatie/publicaties/Assurance-levels-for-digital-service-provision.pdf",
+      title: "Assurance level for digital service provision",
+      authors: [""],
+      date: "September 2017",
+      publisher: "The Standardisation Forum (NL)",
     },
     "UMMR10": {
       href: "https://www.unece.org/fileadmin/DAM/cefact/umm/UMM_Revision_10_2001.zip",

@@ -597,7 +597,7 @@ Section 2 of [[OpenID.Dynamic-Registration]] lists all Client Metadata values th
 
 <aside class="example">
 An example of a Client registration request:
-<pre>  
+<pre>
     POST /connect/register HTTP/1.1
     Content-Type: application/json
     Accept: application/json
@@ -622,4 +622,5 @@ An example of a Client registration request:
     }
 </pre>
 </aside>
+
 Please refer to [Algorithms](#algorithms) for more information on eligible cryptographic methods and keys that can be used when registering a Client.
