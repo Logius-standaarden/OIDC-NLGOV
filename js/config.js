@@ -12,7 +12,7 @@ let respecConfig = {
   previousVersion: "1.0",
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
-  title: "NL GOV profile for OpenID Connect",
+  title: "OpenID NLGov",
   // content: {"NLGovOpenID": ""},
   content: {"Introduction": "", "UseCase": "", "Flow": "", "ClientProfile": "", "ProviderProfile": "", "UserInfo": "", "Considerations": "", "Appendix": "informative" },
   editors:
@@ -73,7 +73,7 @@ let respecConfig = {
   alternateFormats: [
       {
           label: "pdf",
-          uri: "NLGov-OpenIDConnect-profile.pdf",
+          uri: "OpenID-NLGov.pdf",
       },
   ],
   localBiblio: {
@@ -203,14 +203,22 @@ let respecConfig = {
       date: "2018",
       publisher: "The OpenID Foundation",
     },
-"OpenID.Federation": {
-href: "https://openid.net/specs/openid-connect-federation-1_0-12.html",
-title: "OpenID Connect Federation 1.0 - draft 12",
-authors: [
-"R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
-date: "June 30, 2020",
-published: "The OpenID Foundation",
-},
+    "OpenID.NLGov": {
+      href: "https://logius.gitlab.io/oidc/",
+      title: "NL GOV Assurance profile for OpenID Connect 1.0",
+      authors: [
+        "R. Schaar", "F. van Es", "J. Joosten", "J. G. Koops"],
+      date: "2021",
+      publisher: "Logius",
+    },
+    "OpenID.Federation": {
+      href: "https://openid.net/specs/openid-connect-federation-1_0-12.html",
+      title: "OpenID Connect Federation 1.0 - draft 12",
+      authors: [
+      "R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
+      date: "June 30, 2020",
+      published: "The OpenID Foundation",
+    },
     "PKI-CA": {
       href: "https://www.logius.nl/diensten/pkioverheid/aansluiten-als-tsp/toegetreden-vertrouwensdienstverleners",
       title:
