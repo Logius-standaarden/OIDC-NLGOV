@@ -41,6 +41,11 @@ let respecConfig = {
         name: "Alexander Green",
         company: "Logius",
         companyURL: "https://github.com/Logius-standaarden",
+      },
+      {
+        name: "Stas Mironov",
+        company: "Logius",
+        companyURL: "https://github.com/Logius-standaarden",
       }
     ],
   authors:
@@ -143,14 +148,6 @@ let respecConfig = {
       authors: ["F. Terpstra", "J. van Gelder"],
       date: "july 2020",
       publisher: "Logius",
-    },
-    "OAuth2.PAR": {
-      href: "https://tools.ietf.org/html/draft-lodderstedt-oauth-par",
-      title:
-        "OAuth 2.0 Pushed Authorization Requests",
-      authors: ["T. Lodderstedt", "B. Campbell", "N. Sakimura", "D. Tonge", "F. Skokan"],
-      status: "Internet-Draft",
-      publisher: "IETF OAuth Working Group",
     },
     "OAuth2.RAR": {
       href: "https://tools.ietf.org/html/draft-lodderstedt-oauth-rar",
