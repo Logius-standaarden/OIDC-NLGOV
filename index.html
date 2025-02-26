@@ -16,19 +16,14 @@
 <body>
   <section id="abstract" data-include-format="markdown" data-include="abstract.md"></section>
   <section id="sotd"></section><!-- Wordt automatisch gevuld -->
-  <script>
-    let content = "";
-
-    const getClass = function(key) {
-      if (respecConfig.content[key]!==""){return ` class="${respecConfig.content[key]}"`}
-    }
-
-    for (let contentKey in respecConfig.content) {
-      content += `<section data-include-format="markdown" data-include="${contentKey}.md" ${getClass(contentKey)||""}></section>`
-    }
-
-    document.getElementById("sotd").insertAdjacentHTML('afterend', content);
-  </script>
+  <section data-include="Introduction.md" data-include-format="markdown">
+  <section data-include="UseCase.md" data-include-format="markdown">
+  <section data-include="Flow.md" data-include-format="markdown">
+  <section data-include="ClientProfile.md" data-include-format="markdown">
+  <section data-include="ProviderProfile.md" data-include-format="markdown">
+  <section data-include="UserInfo.md" data-include-format="markdown">
+  <section data-include="Considerations.md" data-include-format="markdown">
+  <section data-include="Appendix.md" data-include-format="markdown" class="appendix">
   <section id='conformance'></section>
   <section id='tof'></section>
   <section id="index"></section>
