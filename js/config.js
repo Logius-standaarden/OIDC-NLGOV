@@ -203,8 +203,22 @@ let respecConfig = {
       date: "2018",
       publisher: "The OpenID Foundation",
     },
+    "OpenID.Identity_Assurance": {
+      href: "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html",
+      title: "OpenID Connect for Identity Assurance 1.0",
+      authors: [
+        "Torsten Lodderstedt",
+        "Mark Haine",
+        "Alberto Pulido",
+        "David Waite",
+        "Joseph Heenan",
+        "Ralph Bragg"
+        ],
+      date: "1 October, 2024",
+      publisher: "The OpenID Foundation",
+    },
     "OpenID.NLGov": {
-      href: "https://logius.gitlab.io/oidc/",
+      href: "https://gitdocumentatie.logius.nl/publicatie/api/oidc/",
       title: "NL GOV Assurance profile for OpenID Connect 1.0",
       authors: [
         "R. Schaar", "F. van Es", "J. Joosten", "J. G. Koops"],

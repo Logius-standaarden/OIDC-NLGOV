@@ -28,6 +28,71 @@ However, in the Netherlands the BSN is, as a common identifier for citizens, ava
 
 The default `profile` scope of OpenID Connect is very wide, which is undesired from a privacy perspective. As such, the `profile` scope SHOULD NOT be used.
 
+### Identity assurance on eIDAS level
+The `acr` claim in the OpenID Connect ID Token can carry the eIDAS LoA value, indicating the level of assurance achieved during the authentication process.
+
+The `verified_claims` attribute is part of the [[[OpenID.Identity_Assurance]]] to convey verified identity information about the user. This includes attributes like name, date of birth, or national identification number, which have been verified by the OpenID Provider (OP) according to a specific assurance level. n the context of eIDAS, the verified_claims attribute would be used to provide additional verified identity information, ensuring that the claims meet the required eIDAS LoA. or example, if the `acr` value indicates a _"high" LoA_, the `verified_claims` would include identity attributes that have been verified to that high assurance level.
+
+<aside class="example">
+The following example shows the use if `verified_claims` attribute with eIDAS LoA:
+<pre>
+{
+  "iss": "https://idp-p.example.com/",
+  "sub": "248289761001",
+  "acr": "http://eidas.europa.eu/LoA/high",
+  "verified_claims": {
+    "verification": {
+      "trust_framework": "eIDAS",
+      "assurance_level": "http://eidas.europa.eu/LoA/high",
+      "evidence": [
+        {
+          "type": "document",
+          "method": "pipp",
+          "document": {
+            "type": "idcard",
+            "issuer": {
+              "name": "Government of Netherlands",
+              "country": "NL"
+            },
+            "number": "123456789",
+            "date_of_issuance": "2020-01-01",
+            "date_of_expiry": "2030-01-01"
+          }
+        }
+      ]
+    },
+    "claims": {
+      "given_name": "Jan",
+      "family_name": "Wandelaar",
+      "birthdate": "1985-01-01",
+      "place_of_birth": {
+        "country": "NL",
+        "locality": "Delft"
+      },
+      "nationalities": [
+        "NL"
+      ]
+    }
+  }
+}
+</pre>
+</aside>
+
+In this example we have:
+- `iss`: The issuer of the token, which is the OpenID Provider (OP).
+- `sub`: The subject identifier, uniquely identifying the user.
+- `acr`: The Authentication Context Class Reference, set to the eIDAS LoA value http://eidas.europa.eu/LoA/high, indicating a high level of assurance.
+- `verified_claims`: Contains verified identity information, structured as follows:
+- `verification`: Describes the verification process:
+- `trust_framework`: Indicates the trust framework used (in this case eIDAS). This anwsers the question of _which rules_ are in play.
+- `assurance_level`: Matches the acr value, confirming the LoA.
+- `evidence`: Provides details about the evidence used for verification (e.g., an identity document). _How and when_ the user is verified, as well as _who_ the verifier/issuer is.
+- `claims`: Contains the verified identity attributes (e.g., name, birthdate, nationality).
+
+Clients can request a specific LoA using the `acr_values` parameter in the authentication request. The OP must ensure that the provided `acr` value meets or exceeds the requested LoA.
+If the client also sends a `vtr` (_Vectors of Trust Request_) parameter, the `acr_values` take precedence, and the `vtr` is ignored. This ensures compatibility with the eIDAS LoA framework.
+The verified_claims attribute would then be populated with identity information that aligns with the resulting `acr` value.
+
 > Note that the `doc` profile described in the iGov profile for OpenID Connect [[OpenID.iGov]] is not in common use in the Netherlands and therefore not included in this profile.
 
 ## Claims Request
