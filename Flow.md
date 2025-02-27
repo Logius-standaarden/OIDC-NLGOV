@@ -1,5 +1,7 @@
 # Flow
 
+<div title="NLGov alteration" class="nlgov">
+
 [[[OpenID.Core]]] specifies three paths via which authentication can be performed: the *Authorization Code Flow*, the *Implicit Flow* and the *Hybrid Flow*. The flows determine how the ID Token and Access Token are returned to the Client.
 
 This profile requires that authentication is performed using the Authorization Code Flow, wherein all tokens are returned from the Token Endpoint.
@@ -51,3 +53,4 @@ The flow described by these steps is illustrated as follows.
   </pre>
   <figcaption>Authorization Code Flow</figcaption>
 </figure>
+</div>

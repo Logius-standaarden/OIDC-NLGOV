@@ -1,4 +1,6 @@
-# use case & context
+# Use Case & Context
+
+<div title="NLGov alteration" class="nlgov">
 
 This profile supports several use cases or partial aspects thereof. Design choices within this profile have been made with these use cases taken into account.
 
@@ -28,3 +30,4 @@ As the Dutch identity eco-system supports multiple OpenID providers, identity br
 To mitigate such risks, end-to-end security is considered throughout this profile. Controls such as signing, to assure integrity, and encryption, to strengthen confidentiality, are encouraged to increase overall end-to-end security.
 
 Note that future versions of this profile may support use cases where service intermediation is applicable (see [[[#service-intermediation]]]).
+</div>

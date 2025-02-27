@@ -1,3 +1,4 @@
 .nlgov {
-  text-decoration: underline dotted green;  
+  background-color: var(--tocsidebar-bg);
+  border: 1px dotted;
 }
