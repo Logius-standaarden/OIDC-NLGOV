@@ -9,8 +9,11 @@ This profile requires that authentication is performed using the Authorization C
 The Implicit Flow and Hybrid Flow allow tokens to be obtained from the Authorization Endpoint, and thereby omitting the Token endpoint. This makes them vulnerable to token leakage and token replay and makes it impossible to cryptographically bind tokens to a certain Client.
 
 Therefore, the Implicit Flow and Hybrid flow MUST NOT be used. Also, the IETF OAuth Working Group is removing support for the Implicit Flow from the OAuth 2.1 specification [[?OAuth2.1]] for the same reasons.
+</div>
 
 ## Authorization Code Flow
+
+<div title="NLGov alteration" class="nlgov">
 
 The Authorization Code Flow returns an Authorization Code to the Client, which can then exchange it for an ID Token and an Access Token directly. The flow comprises the following steps:
 

@@ -16,13 +16,20 @@ The service provider or OpenID client requests either an identifier, attributes,
 
 From an architectual standpoint, the use case can utilize a client in the form of a hosted web-application, a mobile/native application or a browser based single-page-application (SPA). See [[[#client-types]]] for more details.
 
+</div>
+
 ## Representation
+
+<div title="NLGov alteration" class="nlgov">
 
 This profile supports several use cases for representation relationships, which apply when an End-User intends to consume an online service on behalf of a Natural or Juridical Person (the service consumer), where authentication and authorization is required. The End-User in these use cases is a Natural Person, representing the service consumer through a Representation Relationship. The relationship has to be formalized and may be either a direct relationship, either voluntarily or on legal grounds, or a chain of representation relationships. The formalization of these relationships is out of scope of this profile.
 
 Example Representation use cases include voluntary authorization, representative assigned by court order (guardian, administrator), statutory signatory (director, president), limited authorized signatory, etc.
+</div>
 
 ## Miscellaneous
+
+<div title="NLGov alteration" class="nlgov">
 
 [[[OpenID.Core]]] supports self-issued OpenID Connect providers. However, as this profile centers around (semi-)governmental and public domain use cases where assurance on identity verification is virtually always required, self-issued OpenID providers MUST NOT be accepted by OpenID clients under this profile.
 
