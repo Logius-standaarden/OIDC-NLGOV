@@ -17,6 +17,7 @@ This specification uses the following terms.
 - "Access Token", "Authorization Code", "Authorization Endpoint", "Authorization Grant", "Authorization Server", "Client", "Client Authentication", "Client Identifier", "Client Secret", "Grant Type", "Protected Resource", "Redirection URI", "Refresh Token", "Resource Server", "Response Type", and "Token Endpoint" defined by 'OAuth 2.0' [[RFC6749]];
 - "Claim Name", "Claim Value", and "JSON Web Token (JWT)" defined by 'JSON Web Token (JWT)' [[RFC7519]];
 - the terms defined by 'OpenID Connect Core 1.0' [[OpenID.Core]];
+
 <div title="NLGov alteration" class="nlgov">
 
 - "Introspection Endpoint" defined by [[RFC7662]];
@@ -31,6 +32,7 @@ In addition to the above terminology, this profile defines the following terms:
 - "Representation", "Representation Relationship", "eIDAS".
 
 Definitions for these terms as well as their abbreviations used throughout this specification are listed in the [[[#glossary]]].
+
 </div>
 
 ## Conformance
