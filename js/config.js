@@ -105,10 +105,10 @@ let respecConfig = {
       publisher: "RvIG",
     },
     "OAuth2.1": {
-      href: "https://tools.ietf.org/html/draft-parecki-oauth-v2-1",
-      title: "OAuth 2.1 Working draft",
+      href: "https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html",
+      title: "The OAuth 2.1 Authorization Framework",
       authors: ["D. Hardt", "A. Parecki", "T. Lodderstedt"],
-      date: "April 2020",
+      date: "15 November 2024",
       publisher: "IETF OAuth Working Group"
     },
     "OAuth2.Browser-Based-Apps": {
