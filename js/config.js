@@ -2,7 +2,7 @@ let respecConfig = {
   useLogo: true,
   useLabel: true,
   license: "cc-by",
-  specStatus: "DEF",
+  specStatus: "WV",
   specType: "ST",
   pubDomain: "api",
   shortName: "oidc",
