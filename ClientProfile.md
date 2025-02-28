@@ -88,11 +88,11 @@ Request Parameters:
 
 - OPTIONAL. MUST be set to a value as described in Section 6.1 of Vectors of Trust [[RFC8485]]. <span title="NLGov alteration" class="nlgov">MUST NOT be used when `acr_values` is set or when the `acr` claim is requested via the `claims` parameter. See also [Section 5.2.4](#vectors-of-trust).</span>
 
-<span title="NLGov alteration" class="nlgov">
+<div title="NLGov alteration" class="nlgov">
 `claims`
 
 - OPTIONAL. This parameter is used to request specific Claims. The value is a JSON object listing the requested Claims, as specified in section 5.5 of [[OpenID.Core]].
-</span>
+</div>
 
 `code_challenge`
 
