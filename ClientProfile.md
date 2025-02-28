@@ -90,7 +90,7 @@ Request Parameters:
 
 `code_challenge_method`
 
-- <span title="NLGov alteration" class="nlgov">REQUIRED. MUST use the value of `S256`.</span>
+- <span title="NLGov alteration" class="nlgov">REQUIRED. MUST use the value of `S256`.</span> <!-- heiko check -->
 
 <aside class="example">
 A sample request may look like:
@@ -110,10 +110,11 @@ A sample request may look like:
 
 ### Request Objects
 
-Clients MAY optionally send requests to the Authorization Endpoint using the `request` or `request_uri` parameter as defined by OpenID Connect [[OpenID.Core]], section 6.
-Passing a Request Object by reference using the `request_uri` is preferred because of browser limits and network latency.
+Clients MAY optionally send requests to the authorization endpoint using the `request` <span title="NLGov alteration" class="nlgov"> or `request_uri`</span> parameter as defined by OpenID Connect [[OpenID.Core]]
+<!-- , see section "6. Passing Request Parameters as JWTs". -->
+<span title="NLGov alteration" class="nlgov">Passing a Request Object by reference using the `request_uri` is preferred because of browser limits and network latency.</span>
 
-Request Objects MUST be signed by the Client's registered key. Request Objects MAY be encrypted to the OpenID Provider's public key. When sending Request Objects by reference, Clients MUST pre-register `request_uri` values with the OpenID Provider at registration and MUST only use pre-registered values for `request_uri`.
+Request Objects MUST be signed by the client's registered key. Request Objects MAY be encrypted to the authorization server's public key. <span title="NLGov alteration" class="nlgov">When sending Request Objects by reference, Clients MUST pre-register `request_uri` values with the OpenID Provider at registration and MUST only use pre-registered values for `request_uri`.</span> <!-- heiko check -->
 
 ### Authentication Response Validation
 
@@ -210,6 +211,7 @@ Clients MUST verify the following in received ID tokens:
 
 ## Discovery
 
+<span title="NLGov alteration" class="nlgov">
 All Clients SHOULD use OpenID Provider discovery to avoid manual configuration and risk of mistakes.
 
 Clients SHOULD acquire OpenID Provider metadata using either 'OpenID Connect Discovery 1.0' ([[OpenID.Discovery]] Section 4) or 'OAuth 2.0 Authorization Server Metadata' ([[RFC8414]] Section 3) via one of the Discovery endpoints provided by the OpenID Provider. See also Section [5.4](#discovery).
@@ -221,9 +223,12 @@ Clients SHOULD follow caching directives provided by the OpenID Provider via HTT
 Clients SHOULD support `signed_metadata` as specified in [[RFC8414]] Section 2.1. In case signed metadata is available, this MUST be used over non-signed metadata and the signature MUST be verified prior to further utilizing any contents.
 
 Clients MUST use the public keys obtained from the `jwks` endpoint to validate the signature on tokens or to encrypt Request Objects to the OpenID Provider.
+</span>
+
 
 ## Registration
 
+<span title="NLGov alteration" class="nlgov">
 All Clients MUST register with the OpenID Provider.
 
 Native Clients MUST either be provisioned a unique per-instance Client identifier or be registered as *public* Clients by using a common Client identifier; browser-based Clients MUST be registered as *public* Clients.
@@ -231,3 +236,4 @@ Native Clients MUST either be provisioned a unique per-instance Client identifie
 Clients SHOULD use Dynamic Registration as per [[RFC7591]] to reduce manual labor and the risks of configuration errors. Dynamic Client Registration Management Protocol [[RFC7592]] MAY be used by Clients.
 
 In case a native Client is using per-instance registration, the Client MUST use Dynamic Registration.
+</span>
