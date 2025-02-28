@@ -81,7 +81,7 @@ The following example shows the use if `verified_claims` attribute with eIDAS Lo
 In this example we have:
 - `iss`: The issuer of the token, which is the OpenID Provider (OP).
 - `sub`: The subject identifier, uniquely identifying the user.
-- `acr`: The Authentication Context Class Reference, set to the eIDAS LoA value http://eidas.europa.eu/LoA/high, indicating a high level of assurance.
+- `acr`: The Authentication Context Class Reference, set to the eIDAS LoA value `http://eidas.europa.eu/LoA/high`, indicating a high level of assurance.
 - `verified_claims`: Contains verified identity information, structured as follows:
 - `verification`: Describes the verification process:
 - `trust_framework`: Indicates the trust framework used (in this case eIDAS). This anwsers the question of _which rules_ are in play.
