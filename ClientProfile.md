@@ -1,7 +1,7 @@
 # Relying Party Profile
 
-<span title="NLGov alteration" class="nlgov">
 ## Client Types
+<div title="NLGov alteration" class="nlgov">
 
 OAuth 2.0 defines two Client Types (*confidential* and *public* Clients) and three Client Profiles (*Web Applications*, *Browser / User-Agent based Applications*, and *Native Applications*).
 
@@ -14,18 +14,28 @@ The following design considerations apply to all Clients:
 - Clients MUST use 'Proof Key for Code Exchange' [[RFC7636]] to protect calls to the Token Endpoint.
 - Clients SHOULD restrict its Client-Side script (e.g. JavaScript) execution to a set of statically hosted scripts via a 'Content Security Policy' [[CSP]].
 - Clients SHOULD use 'Subresource Integrity' [[SRI]] to verify that any dependencies they include (e.g. via a Content Delivery Network) are not unexpectedly manipulated.
+</div>
 
 ### Web Applications
 
+<div title="NLGov alteration" class="nlgov">
+
 *Web applications* are applications that run on a web server and are consumed through the user-agent ("browser") by the End-User. Web applications are capable of securely authenticating themselves and of maintaining the confidentiality of secrets (e.g. Client credentials and tokens) and are therefore considered *confidential* Clients (OAuth 2.0 [[RFC6749]], Section 2.1).
+</div>
 
 ### Browser-based Applications
+
+<div title="NLGov alteration" class="nlgov">
 
 *Browser-based applications* are applications that are dynamically downloaded and executed in a web browser that are also sometimes referred to as *user-agent-based applications* or *single-page applications*. Browser-based applications are considered to be not capable of maintaining the confidentiality of secrets, as they may be vulnerable to several types of attacks, including Cross-Site Scripting (XSS), Cross Site Request Forgery (CSRF) and OAuth token theft. Browser-based applications are considered *public* Clients (OAuth 2.0 [[RFC6749]], Section 2.1).
 
 - Browser-based applications SHOULD follow the best practices specified in [[?OAuth2.Browser-Based-Apps]].
 
+</div>
+
 ### Native and Hybrid Applications
+
+<div title="NLGov alteration" class="nlgov">
 
 *Native applications* are applications installed and executed on the device used by the End-User (i.e. desktop applications, native mobile applications). Native applications can sufficiently protect dynamically issued secrets, but are not capable of maintaining the confidentiality of secrets that are statically included as part of an app distribution. Therefore, Native applications are considered *public* Clients, except when they are provisioned per-instance secrets via mechanisms like Dynamic Client Registration (OAuth 2.0 [[RFC6749]], Section 2.1).
 
@@ -34,7 +44,7 @@ The following design considerations apply to all Clients:
 - Native applications MUST follow the best practices as specified in OAuth 2.0 for Native Apps [[RFC8252]].
 - The use of *confidential* Native applications (which are provisioned per-instance secrets) is RECOMMENDED over *public* Native applications, as *confidential* Clients provide better means to perform secure Client Authentication.
 - Native applications MUST use an external user-agent or "in-app browser tab" to make authorization requests; an "embedded user-agent" or "web-view" components MUST NOT be used for this purpose. See 'OAuth 2.0 for Native apps' [[RFC8252]] for more information on the "in-app browser tab" feature and support on various platforms.
-</span>
+</div>
 
 ## Requests to the Authorization Endpoint
 
@@ -211,7 +221,7 @@ Clients MUST verify the following in received ID tokens:
 
 ## Discovery
 
-<span title="NLGov alteration" class="nlgov">
+<div title="NLGov alteration" class="nlgov">
 All Clients SHOULD use OpenID Provider discovery to avoid manual configuration and risk of mistakes.
 
 Clients SHOULD acquire OpenID Provider metadata using either 'OpenID Connect Discovery 1.0' ([[OpenID.Discovery]] Section 4) or 'OAuth 2.0 Authorization Server Metadata' ([[RFC8414]] Section 3) via one of the Discovery endpoints provided by the OpenID Provider. See also Section [5.4](#discovery).
@@ -223,12 +233,12 @@ Clients SHOULD follow caching directives provided by the OpenID Provider via HTT
 Clients SHOULD support `signed_metadata` as specified in [[RFC8414]] Section 2.1. In case signed metadata is available, this MUST be used over non-signed metadata and the signature MUST be verified prior to further utilizing any contents.
 
 Clients MUST use the public keys obtained from the `jwks` endpoint to validate the signature on tokens or to encrypt Request Objects to the OpenID Provider.
-</span>
+</div>
 
 
 ## Registration
 
-<span title="NLGov alteration" class="nlgov">
+<div title="NLGov alteration" class="nlgov">
 All Clients MUST register with the OpenID Provider.
 
 Native Clients MUST either be provisioned a unique per-instance Client identifier or be registered as *public* Clients by using a common Client identifier; browser-based Clients MUST be registered as *public* Clients.
@@ -236,4 +246,4 @@ Native Clients MUST either be provisioned a unique per-instance Client identifie
 Clients SHOULD use Dynamic Registration as per [[RFC7591]] to reduce manual labor and the risks of configuration errors. Dynamic Client Registration Management Protocol [[RFC7592]] MAY be used by Clients.
 
 In case a native Client is using per-instance registration, the Client MUST use Dynamic Registration.
-</span>
+</div>
