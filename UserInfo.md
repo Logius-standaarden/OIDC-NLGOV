@@ -34,7 +34,8 @@ The `acr` claim in the OpenID Connect ID Token can carry the eIDAS LoA value, in
 The `verified_claims` attribute is part of the [[[OpenID.Identity_Assurance]]] to convey verified identity information about the user. This includes attributes like name, date of birth, or national identification number, which have been verified by the OpenID Provider (OP) according to a specific assurance level. In the context of eIDAS, the verified_claims attribute would be used to provide additional verified identity information, ensuring that the claims meet the required eIDAS LoA. For example, if the `acr` value indicates a _"high" LoA_, the `verified_claims` would include identity attributes that have been verified to that high assurance level.
 
 <aside class="example">
-The following example shows the use if `verified_claims` attribute with eIDAS LoA:
+  
+The following example shows the use of the `verified_claims` attribute with eIDAS LoA:
 <pre>
 {
   "iss": "https://idp-p.example.com/",
