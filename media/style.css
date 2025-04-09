@@ -1,4 +1,5 @@
 .nlgov {
-  background-color: var(--tocsidebar-bg);
+  background-color: var(--amendment-bg);
+  border-color: var(--amendment-border);
   border: 1px dotted;
 }
