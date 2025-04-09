@@ -440,7 +440,7 @@ The following example shows the JSON document found at a discovery endpoint for 
         "A128CBC-HS256", "A128GCM", "A256GCM"
       ],
       "token_endpoint_auth_methods_supported": [
-        "private_key_jwt",
+        "private_key_jwt"
       ],
       "userinfo_encryption_alg_values_supported": [
         "RSA-OAEP", "RSA-OAEP-256"
@@ -479,7 +479,7 @@ The following example shows the JSON document found at a discovery endpoint for 
         "normal"
       ],
       "grant_types_supported": [
-        "authorization_code",
+        "authorization_code"
       ],
       "scopes_supported": [
         "profile", "openid", "doc"
@@ -495,7 +495,7 @@ The following example shows the JSON document found at a discovery endpoint for 
       "claims_supported": [
         "sub", "name", "vot", "acr"
       ],
-      "acr_values_supported" [
+      "acr_values_supported": [
         "http://eidas.europa.eu/LoA/substantial",
         "http://eidas.europa.eu/LoA/high"
       ]
