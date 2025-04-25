@@ -12,7 +12,6 @@ let respecConfig = {
   previousVersion: "1.0",
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
-  title: "OpenID NLGov",
 
   editors:
     [
