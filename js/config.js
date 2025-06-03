@@ -12,34 +12,33 @@ let respecConfig = {
   previousVersion: "1.0",
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
-  title: "OpenID NLGov",
 
   editors:
     [
       {
         name: "Remco Schaar",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       },
       {
         name: "Frank van Es",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       },
       {
         name: "Pieter Hering",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       },
       {
         name: "Martin van der Plas",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
        },
       {
         name: "Alexander Green",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       }
     ],
   authors:
@@ -47,12 +46,12 @@ let respecConfig = {
       {
         name: "Remco Schaar",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       },
       {
         name: "Frank van Es",
         company: "Logius",
-        companyURL: "https://github.com/Logius-standaarden",
+        companyURL: "https://logius.nl",
       },
       {
         name: "Joris Joosten",
