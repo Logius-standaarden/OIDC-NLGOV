@@ -479,7 +479,8 @@ The following example shows the JSON document found at a discovery endpoint for 
         "normal"
       ],
       "grant_types_supported": [
-        "authorization_code"
+        "authorization_code",
+        "urn:ietf:params:oauth:grant-type:token-exchange"
       ],
       "scopes_supported": [
         "profile", "openid", "doc"
