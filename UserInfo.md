@@ -28,8 +28,33 @@ However, in the Netherlands the BSN is, as a common identifier for citizens, ava
 
 The default `profile` scope of OpenID Connect is very wide, which is undesired from a privacy perspective. As such, the `profile` scope SHOULD NOT be used.
 
+> Note that the `doc` profile described in the iGov profile for OpenID Connect [[OpenID.iGov]] is not in common use in the Netherlands and therefore not included in this profile.
+
+## Claims Request
+
+OpenID Core Section 5.5 [[OpenID.Core]] defines a method for a Client to request specific Claims in the UserInfo object or ID Token. OpenID Providers MUST support this `claims` parameter in the interest of data minimization - that is, the Provider only returns information on the subject the Client specifically asks for, and does not volunteer additional information about the subject.
+
+Clients requesting the `profile` scope MAY provide a `claims` request parameter.
+If the Claims request is omitted, the OpenID Provider SHOULD provide a default Claims set that it has available for the subject, in accordance with any policies set out by the trust framework the Provider supports.
+> **Note:** Clients SHOULD NOT request the `profile` scope, as described in the previous section.
+
+## Claims Response
+
+Response to a UserInfo request MUST match the scope and Claims requested to avoid having a OpenID Provider over-expose an End-User's identity information.
+OpenID Providers MUST NOT provide any personal identifiable information without applicable consent.
+
+Claims responses MAY also make use of the aggregated and/or distributed Claims structure to refer to the original source of the subject's Claims.
+
+## Claims Metadata
+
+Claims Metadata (such as locale or the confidence level the OpenID Provider has in the Claim for the End-User) can be expressed as attributes within the UserInfo object. These types of Claims are best described by the trust framework the Clients and OpenID Providers operate within.
+It is up to the Client to assess the level of confidence provided by the OpenID Provider or the trust framework, per Claim.
+
+In order to provide a source, including integrity and optionally confidentiality, an OpenID Provider SHOULD be able to provide aggregated or support distributed Claims. The signee of such aggregated or distributed Claims implies the source and can support in assessing the level confidence or quality of the Claim.
+
+For identity assurance there is a standardised extension in [[[OpenID.Identity_Assurance]]]. It allows for use under different regulations, such as eIDAS. Below is an example of how to apply eIDAS within the NLGov profile.
+
 ### Identity assurance on eIDAS level
-The `acr` claim in the OpenID Connect ID Token can carry the eIDAS LoA value, indicating the level of assurance achieved during the authentication process.
 
 The `verified_claims` attribute is part of the [[[OpenID.Identity_Assurance]]] to convey verified identity information about the user. This includes attributes like name, date of birth, or national identification number, which have been verified by the OpenID Provider (OP) according to a specific assurance level. In the context of eIDAS, the verified_claims attribute would be used to provide additional verified identity information, ensuring that the claims meet the required eIDAS LoA. For example, if the `acr` value indicates a _"high" LoA_, the `verified_claims` would include identity attributes that have been verified to that high assurance level.
 
@@ -43,24 +68,8 @@ The following example shows the use of the `verified_claims` attribute with eIDA
   "acr": "http://eidas.europa.eu/LoA/high",
   "verified_claims": {
     "verification": {
-      "trust_framework": "eIDAS",
-      "assurance_level": "http://eidas.europa.eu/LoA/high",
-      "evidence": [
-        {
-          "type": "document",
-          "method": "pipp",
-          "document": {
-            "type": "idcard",
-            "issuer": {
-              "name": "Government of Netherlands",
-              "country": "NL"
-            },
-            "number": "123456789",
-            "date_of_issuance": "2020-01-01",
-            "date_of_expiry": "2030-01-01"
-          }
-        }
-      ]
+      "trust_framework": "eidas",
+      "assurance_level": "high",
     },
     "claims": {
       "given_name": "Jan",
@@ -82,38 +91,12 @@ The following example shows the use of the `verified_claims` attribute with eIDA
 In this example we have:
 - `iss`: The issuer of the token, which is the OpenID Provider (OP).
 - `sub`: The subject identifier, uniquely identifying the user.
-- `acr`: The Authentication Context Class Reference, set to the eIDAS LoA value `http://eidas.europa.eu/LoA/high`, indicating a high level of assurance.
 - `verified_claims`: Contains verified identity information, structured as follows:
 - `verification`: Describes the verification process:
 - `trust_framework`: Indicates the trust framework used (in this case eIDAS). This anwsers the question of _which rules_ are in play.
 - `assurance_level`: Matches the acr value, confirming the LoA.
-- `evidence`: Provides details about the evidence used for verification (e.g., an identity document). _How and when_ the user is verified, as well as _who_ the verifier/issuer is.
 - `claims`: Contains the verified identity attributes (e.g., name, birthdate, nationality).
 
 Clients can request a specific LoA using the `acr_values` parameter in the authentication request. The OP must ensure that the provided `acr` value meets or exceeds the requested LoA.
 If the client also sends a `vtr` (_Vectors of Trust Request_) parameter, the `acr_values` take precedence, and the `vtr` is ignored. This ensures compatibility with the eIDAS LoA framework.
 The verified_claims attribute would then be populated with identity information that aligns with the resulting `acr` value.
-
-> Note that the `doc` profile described in the iGov profile for OpenID Connect [[OpenID.iGov]] is not in common use in the Netherlands and therefore not included in this profile.
-
-## Claims Request
-
-OpenID Core Section 5.5 [[OpenID.Core]] defines a method for a Client to request specific Claims in the UserInfo object or ID Token. OpenID Providers MUST support this `claims` parameter in the interest of data minimization - that is, the Provider only returns information on the subject the Client specifically asks for, and does not volunteer additional information about the subject.
-
-Clients requesting the `profile` scope MAY provide a `claims` request parameter.
-If the Claims request is omitted, the OpenID Provider SHOULD provide a default Claims set that it has available for the subject, in accordance with any policies set out by the trust framework the Provider supports.
-> **Note:** Clients SHOULD NOT request the `profile` scope, as described in the previous section.
-
-## Claims Response
-
-Response to a UserInfo request MUST match the scope and Claims requested to avoid having a OpenID Provider over-expose an End-User's identity information.
-OpenID Providers MUST NOT provide any personal identifiable information without applicable consent.
-
-Claims responses MAY also make use of the aggregated and/or distributed Claims structure to refer to the original source of the subject's Claims.
-
-## Claims Metadata
-
-Claims Metadata (such as locale or the confidence level the OpenID Provider has in the Claim for the End-User) can be expressed as attributes within the UserInfo object, but are outside the scope of this document. These types of Claims are best described by the trust framework the Clients and OpenID Providers operate within.
-It is up to the Client to assess the level of confidence provided by the OpenID Provider or the trust framework, per Claim. Expressing or evaluating such confidence is beyond the scope of this profile.
-
-In order to provide a source, including integrity and optionally confidentiality, an OpenID Provider SHOULD be able to provide aggregated or support distributed Claims. The signee of such aggregated or distributed Claims implies the source and can support in assessing the level confidence or quality of the Claim.
