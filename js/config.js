@@ -92,7 +92,7 @@ let respecConfig = {
       publisher: "OASIS",
     },
     "eIDAS.SAML": {
-      href: "https://ec.europa.eu/digital-building-blocks/wikis/download/attachments/467109280/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf",
+      href: "https://ec.europa.eu/digital-building-blocks/sites/download/attachments/467109280/eIDAS%20SAML%20Message%20Format%20v.1.4.1_final.pdf",
       title: "eIDAS SAML Message Format",
       publisher: "eIDAS Coorperation Network"
     },
@@ -201,8 +201,22 @@ let respecConfig = {
       date: "2018",
       publisher: "The OpenID Foundation",
     },
+    "OpenID.Identity_Assurance": {
+      href: "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html",
+      title: "OpenID Connect for Identity Assurance 1.0",
+      authors: [
+        "Torsten Lodderstedt",
+        "Mark Haine",
+        "Alberto Pulido",
+        "David Waite",
+        "Joseph Heenan",
+        "Ralph Bragg"
+        ],
+      date: "1 October, 2024",
+      publisher: "The OpenID Foundation",
+    },
     "OpenID.NLGov": {
-      href: "https://logius.gitlab.io/oidc/",
+      href: "https://gitdocumentatie.logius.nl/publicatie/api/oidc/",
       title: "NL GOV Assurance profile for OpenID Connect 1.0",
       authors: [
         "R. Schaar", "F. van Es", "J. Joosten", "J. G. Koops"],

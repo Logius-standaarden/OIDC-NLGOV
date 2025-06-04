@@ -47,7 +47,56 @@ Claims responses MAY also make use of the aggregated and/or distributed Claims s
 
 ## Claims Metadata
 
-Claims Metadata (such as locale or the confidence level the OpenID Provider has in the Claim for the End-User) can be expressed as attributes within the UserInfo object, but are outside the scope of this document. These types of Claims are best described by the trust framework the Clients and OpenID Providers operate within.
-It is up to the Client to assess the level of confidence provided by the OpenID Provider or the trust framework, per Claim. Expressing or evaluating such confidence is beyond the scope of this profile.
+Claims Metadata (such as locale or the confidence level the OpenID Provider has in the Claim for the End-User) can be expressed as attributes within the UserInfo object. These types of Claims are best described by the trust framework the Clients and OpenID Providers operate within.
+It is up to the Client to assess the level of confidence provided by the OpenID Provider or the trust framework, per Claim.
 
 In order to provide a source, including integrity and optionally confidentiality, an OpenID Provider SHOULD be able to provide aggregated or support distributed Claims. The signee of such aggregated or distributed Claims implies the source and can support in assessing the level confidence or quality of the Claim.
+
+For identity assurance there is a standardised extension in [[[OpenID.Identity_Assurance]]]. It allows for use under different regulations, such as eIDAS. Below is an example of how to apply eIDAS within the NLGov profile.
+
+### Identity assurance on eIDAS level
+
+The `verified_claims` attribute is part of the [[[OpenID.Identity_Assurance]]] to convey verified identity information about the user. This includes attributes like name, date of birth, or national identification number, which have been verified by the OpenID Provider (OP) according to a specific assurance level. In the context of eIDAS, the verified_claims attribute would be used to provide additional verified identity information, ensuring that the claims meet the required eIDAS LoA. For example, if the `acr` value indicates a _"high" LoA_, the `verified_claims` would include identity attributes that have been verified to that high assurance level.
+
+<aside class="example">
+  
+The following example shows the use of the `verified_claims` attribute with eIDAS LoA:
+<pre>
+{
+  "iss": "https://idp-p.example.com/",
+  "sub": "248289761001",
+  "acr": "http://eidas.europa.eu/LoA/high",
+  "verified_claims": {
+    "verification": {
+      "trust_framework": "eidas",
+      "assurance_level": "high",
+    },
+    "claims": {
+      "given_name": "Jan",
+      "family_name": "Wandelaar",
+      "birthdate": "1985-01-01",
+      "place_of_birth": {
+        "country": "NL",
+        "locality": "Delft"
+      },
+      "nationalities": [
+        "NL"
+      ]
+    }
+  }
+}
+</pre>
+</aside>
+
+In this example we have:
+- `iss`: The issuer of the token, which is the OpenID Provider (OP).
+- `sub`: The subject identifier, uniquely identifying the user.
+- `verified_claims`: Contains verified identity information, structured as follows:
+- `verification`: Describes the verification process:
+- `trust_framework`: Indicates the trust framework used (in this case eIDAS). This anwsers the question of _which rules_ are in play.
+- `assurance_level`: Matches the acr value, confirming the LoA.
+- `claims`: Contains the verified identity attributes (e.g., name, birthdate, nationality).
+
+Clients can request a specific LoA using the `acr_values` parameter in the authentication request. The OP must ensure that the provided `acr` value meets or exceeds the requested LoA.
+If the client also sends a `vtr` (_Vectors of Trust Request_) parameter, the `acr_values` take precedence, and the `vtr` is ignored. This ensures compatibility with the eIDAS LoA framework.
+The verified_claims attribute would then be populated with identity information that aligns with the resulting `acr` value.
