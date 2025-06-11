@@ -1,6 +1,7 @@
-# OpenID Client profile
+# Relying Party Profile
 
 ## Client Types
+<div title="NLGov alteration" class="nlgov">
 
 OAuth 2.0 defines two Client Types (*confidential* and *public* Clients) and three Client Profiles (*Web Applications*, *Browser / User-Agent based Applications*, and *Native Applications*).
 
@@ -13,18 +14,28 @@ The following design considerations apply to all Clients:
 - Clients MUST use 'Proof Key for Code Exchange' [[RFC7636]] to protect calls to the Token Endpoint.
 - Clients SHOULD restrict its Client-Side script (e.g. JavaScript) execution to a set of statically hosted scripts via a 'Content Security Policy' [[CSP]].
 - Clients SHOULD use 'Subresource Integrity' [[SRI]] to verify that any dependencies they include (e.g. via a Content Delivery Network) are not unexpectedly manipulated.
+</div>
 
 ### Web Applications
 
+<div title="NLGov alteration" class="nlgov">
+
 *Web applications* are applications that run on a web server and are consumed through the user-agent ("browser") by the End-User. Web applications are capable of securely authenticating themselves and of maintaining the confidentiality of secrets (e.g. Client credentials and tokens) and are therefore considered *confidential* Clients (OAuth 2.0 [[RFC6749]], Section 2.1).
+</div>
 
 ### Browser-based Applications
+
+<div title="NLGov alteration" class="nlgov">
 
 *Browser-based applications* are applications that are dynamically downloaded and executed in a web browser that are also sometimes referred to as *user-agent-based applications* or *single-page applications*. Browser-based applications are considered to be not capable of maintaining the confidentiality of secrets, as they may be vulnerable to several types of attacks, including Cross-Site Scripting (XSS), Cross Site Request Forgery (CSRF) and OAuth token theft. Browser-based applications are considered *public* Clients (OAuth 2.0 [[RFC6749]], Section 2.1).
 
 - Browser-based applications SHOULD follow the best practices specified in [[?OAuth2.Browser-Based-Apps]].
 
+</div>
+
 ### Native and Hybrid Applications
+
+<div title="NLGov alteration" class="nlgov">
 
 *Native applications* are applications installed and executed on the device used by the End-User (i.e. desktop applications, native mobile applications). Native applications can sufficiently protect dynamically issued secrets, but are not capable of maintaining the confidentiality of secrets that are statically included as part of an app distribution. Therefore, Native applications are considered *public* Clients, except when they are provisioned per-instance secrets via mechanisms like Dynamic Client Registration (OAuth 2.0 [[RFC6749]], Section 2.1).
 
@@ -33,59 +44,63 @@ The following design considerations apply to all Clients:
 - Native applications MUST follow the best practices as specified in OAuth 2.0 for Native Apps [[RFC8252]].
 - The use of *confidential* Native applications (which are provisioned per-instance secrets) is RECOMMENDED over *public* Native applications, as *confidential* Clients provide better means to perform secure Client Authentication.
 - Native applications MUST use an external user-agent or "in-app browser tab" to make authorization requests; an "embedded user-agent" or "web-view" components MUST NOT be used for this purpose. See 'OAuth 2.0 for Native apps' [[RFC8252]] for more information on the "in-app browser tab" feature and support on various platforms.
+</div>
 
-## Authorization Endpoint
+## Requests to the Authorization Endpoint
 
 ### Authentication Request
 
-The following describes the supported OpenID Connect Authorization Code Flow parameters for use with a NL Gov compatible OpenID Provider.
-Some of these requirements are inherited as specified in Section 2.1.1 of [[OAuth2.NLGov]].
+The NL GOV OAuth2 profile [[OAuth2.NLGov]] specifies requirements for requests to Authorization Endpoints - for example, when to use the [[RFC7636]] parameters to secure token exchange.
+In addition to the requirements specified in Section 2.1.1 of the NL GOV OAuth2 profile [[OAuth2.NLGov]], the following describes the supported OpenID Connect Authorization Code Flow parameters for use with NL Gov compatible OpenID IdPs.
 
 Request Parameters:
 
 `client_id`
 
-- REQUIRED. Valid OAuth 2.0 Client Identifier. MUST have the value as obtained during registration. Identical as in [[OAuth2.NLGov]].
+- REQUIRED. OAuth 2.0 Client Identifier valid at the Authorization Server. <span title="NLGov alteration" class="nlgov">MUST have the value as obtained during registration. Identical as in [[OAuth2.NLGov]].</span>
 
 `response_type`
 
-- REQUIRED. MUST have value `code` for the Authorization Code Flow. Identical as in [[OAuth2.NLGov]].
+- REQUIRED. <span title="NLGov alteration" class="nlgov">MUST have value `code` for the Authorization Code Flow. Identical as in [[OAuth2.NLGov]].</span>
 
 `scope`
 
-- REQUIRED. Indicates the access privileges being requested. MUST contain at least the value `openid` and SHOULD contain a specific scope for which access is requested.
+- REQUIRED. Indicates the access privileges being requested. <span title="NLGov alteration" class="nlgov">MUST contain at least the value openid and SHOULD contain a specific scope for which access is requested.</span>
 
 `redirect_uri`
 
-- REQUIRED. Indicates a valid endpoint where the Client will receive the authentication response. MUST be an absolute HTTPS URL unless the Client is a native application operating on a desktop device. In case of a native application on a desktop, this MAY be an absolute HTTP URL with the literal loopback IP address and port number the Client is listening on as hostname. MUST NOT use `localhost` for loopback addresses, see [[RFC8252]] Sections 7.3 and 8.3. MUST exactly match one of the Redirection URI values for the Client pre-registered at the OpenID Provider, except for the port URI component on loopback addresses for native applications on desktops. Inter-app redirect URIs for Native applications on mobile devices MUST use Claimed `https` Scheme URI Redirection, as specified in Section 7.2 of [[RFC8252]].
+- REQUIRED. Indicates a valid endpoint where the client will receive the authentication response. See [core section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
+<span title="NLGov alteration" class="nlgov">MUST be an absolute HTTPS URL unless the Client is a native application operating on a desktop device. In case of a native application on a desktop, this MAY be an absolute HTTP URL with the literal loopback IP address and port number the Client is listening on as hostname. MUST NOT use `localhost` for loopback addresses, see [[RFC8252]] Sections 7.3 and 8.3. MUST exactly match one of the Redirection URI values for the Client pre-registered at the OpenID Provider, except for the port URI component on loopback addresses for native applications on desktops. Inter-app redirect URIs for Native applications on mobile devices MUST use Claimed `https` Scheme URI Redirection, as specified in Section 7.2 of [[RFC8252]].</span>
 
 `state`
 
-- REQUIRED. Unguessable random string generated by the Client, used to protect against Cross-Site Request Forgery (CSRF, XSRF) attacks. Must contain at least 128 bits of cryptographic random to avoid guessing. Returned to the Client in the Authentication Response. Identical as in [[OAuth2.NLGov]].
+- REQUIRED. Unguessable random string generated by the RP, used to protect against Cross-Site Request Forgery (CSRF, XSRF) attacks. Must contain <span title="NLGov alteration" class="nlgov">at least 128 bits </span> of entropy to avoid guessing.</span> Returned to the RP in the authentication response. <span title="NLGov alteration" class="nlgov">Identical as in [[OAuth2.NLGov]].</span>
 
 `nonce`
 
-- REQUIRED. Unguessable random string generated by the Client, used to associate a Client session with an ID Token and to protect against replay attacks. Must contain at least 128 bits of cryptographic random to avoid guessing. Returned to the Client in the ID Token. See also [[OpenID.Core]], Section 15.5.2 for implementation notes.
+- REQUIRED. Unguessable random string generated by the client, <span title="NLGov alteration" class="nlgov">used to associate a Client session with an ID Token and</span> to protect against <span title="NLGov alteration" class="nlgov">replay</span> and CSRF attacks. Must contain <span title="NLGov alteration" class="nlgov">at least 128 bits </span> of entropy to avoid guessing. Returned to the client in the ID Token. <span title="NLGov alteration" class="nlgov">See also [[OpenID.Core]], Section 15.5.2 for implementation notes.</span>
 
 `acr_values`
 
-- OPTIONAL. Lists the acceptable LoAs for this authentication. Under this profile, `acr_values` takes precedence over `vtr`. See also [Section 5.2.3](#authentication-context). Identical as in [[OpenID.Core]].
+- OPTIONAL. Lists the acceptable LoAs for this authentication. <span title="NLGov alteration" class="nlgov">Under this profile, `acr_values` takes precedence over `vtr`. See also [Section 5.2.3](#authentication-context). Identical as in [[OpenID.Core]].</span>
 
 `vtr`
 
-- OPTIONAL. MUST be set to a value as described in Section 6.1 of Vectors of Trust [[RFC8485]]. MUST NOT be used when `acr_values` is set or when the `acr` Claim is requested via the `claims` parameter. See also [Section 5.2.4](#vectors-of-trust).
+- OPTIONAL. MUST be set to a value as described in Section 6.1 of Vectors of Trust [[RFC8485]]. <span title="NLGov alteration" class="nlgov">MUST NOT be used when `acr_values` is set or when the `acr` claim is requested via the `claims` parameter. See also [Section 5.2.4](#vectors-of-trust).</span>
 
+<div title="NLGov alteration" class="nlgov">
 `claims`
 
 - OPTIONAL. This parameter is used to request specific Claims. The value is a JSON object listing the requested Claims, as specified in section 5.5 of [[OpenID.Core]].
+</div>
 
 `code_challenge`
 
-- REQUIRED. Code challenge as in PKCE [[RFC7636]].
+- <span title="NLGov alteration" class="nlgov">REQUIRED. Code challenge as in PKCE [[RFC7636]].</span>
 
 `code_challenge_method`
 
-- REQUIRED. MUST use the value of `S256`.
+- <span title="NLGov alteration" class="nlgov">REQUIRED. MUST use the value of `S256`.</span> <!-- heiko check -->
 
 <aside class="example">
 A sample request may look like:
@@ -105,10 +120,11 @@ A sample request may look like:
 
 ### Request Objects
 
-Clients MAY optionally send requests to the Authorization Endpoint using the `request` or `request_uri` parameter as defined by OpenID Connect [[OpenID.Core]], section 6.
-Passing a Request Object by reference using the `request_uri` is preferred because of browser limits and network latency.
+Clients MAY optionally send requests to the authorization endpoint using the `request` <span title="NLGov alteration" class="nlgov"> or `request_uri`</span> parameter as defined by OpenID Connect [[OpenID.Core]]
+<!-- , see section "6. Passing Request Parameters as JWTs". -->
+<span title="NLGov alteration" class="nlgov">Passing a Request Object by reference using the `request_uri` is preferred because of browser limits and network latency.</span>
 
-Request Objects MUST be signed by the Client's registered key. Request Objects MAY be encrypted to the OpenID Provider's public key. When sending Request Objects by reference, Clients MUST pre-register `request_uri` values with the OpenID Provider at registration and MUST only use pre-registered values for `request_uri`.
+Request Objects MUST be signed by the client's registered key. Request Objects MAY be encrypted to the authorization server's public key. <span title="NLGov alteration" class="nlgov">When sending Request Objects by reference, Clients MUST pre-register `request_uri` values with the OpenID Provider at registration and MUST only use pre-registered values for `request_uri`.</span> <!-- heiko check -->
 
 ### Authentication Response Validation
 
@@ -205,6 +221,7 @@ Clients MUST verify the following in received ID tokens:
 
 ## Discovery
 
+<div title="NLGov alteration" class="nlgov">
 All Clients SHOULD use OpenID Provider discovery to avoid manual configuration and risk of mistakes.
 
 Clients SHOULD acquire OpenID Provider metadata using either 'OpenID Connect Discovery 1.0' ([[OpenID.Discovery]] Section 4) or 'OAuth 2.0 Authorization Server Metadata' ([[RFC8414]] Section 3) via one of the Discovery endpoints provided by the OpenID Provider. See also Section [5.4](#discovery).
@@ -216,9 +233,12 @@ Clients SHOULD follow caching directives provided by the OpenID Provider via HTT
 Clients SHOULD support `signed_metadata` as specified in [[RFC8414]] Section 2.1. In case signed metadata is available, this MUST be used over non-signed metadata and the signature MUST be verified prior to further utilizing any contents.
 
 Clients MUST use the public keys obtained from the `jwks` endpoint to validate the signature on tokens or to encrypt Request Objects to the OpenID Provider.
+</div>
+
 
 ## Registration
 
+<div title="NLGov alteration" class="nlgov">
 All Clients MUST register with the OpenID Provider.
 
 Native Clients MUST either be provisioned a unique per-instance Client identifier or be registered as *public* Clients by using a common Client identifier; browser-based Clients MUST be registered as *public* Clients.
@@ -226,3 +246,4 @@ Native Clients MUST either be provisioned a unique per-instance Client identifie
 Clients SHOULD use Dynamic Registration as per [[RFC7591]] to reduce manual labor and the risks of configuration errors. Dynamic Client Registration Management Protocol [[RFC7592]] MAY be used by Clients.
 
 In case a native Client is using per-instance registration, the Client MUST use Dynamic Registration.
+</div>
