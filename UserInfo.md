@@ -10,7 +10,7 @@ As per Section 5.1.2 of [[OpenID.Core]], Claim names SHOULD be collision-resista
 
 <aside class="example">
   
-The following example demonstrates the interoperability issues with dutch naming system and standard claims. We show the possible use of the `family_name_affix` attribute in combination with the standard claim set.
+The following example demonstrates the interoperability issues between the Dutch naming system and standard claims. We show the possible use of the `family_name_affix` attribute in combination with the standard claim set.
 Below is a sample payload from an OIDC ID Token or `userinfo` endpoint response:
 <pre>
 {
