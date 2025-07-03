@@ -9,7 +9,7 @@ let respecConfig = {
   publishDate: "2023-09-18",
   publishVersion: "1.0.1",
   
-  previousVersion: "1.0",
+  previousPublishVersion: [],
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
 
