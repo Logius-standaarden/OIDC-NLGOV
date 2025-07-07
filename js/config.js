@@ -271,4 +271,5 @@ let respecConfig = {
     },
 },
 
+postProcess: [window.respecMermaid.createFigures],
 };

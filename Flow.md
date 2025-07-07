@@ -21,4 +21,4 @@ The Authorization Code Flow returns an Authorization Code to the Client, which c
 
 The flow described by these steps is illustrated as follows:
 
-<div data-include="./media/authorization-code-flow.md data-include-format="markdown"></div> 
+<div data-include="/media/authorization-code-flow.md" data-include-format="markdown"></div> 
