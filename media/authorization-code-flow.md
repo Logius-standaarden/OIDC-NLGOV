@@ -14,4 +14,5 @@ sequenceDiagram
 ```
 
 <figure id='authorization_code_flow'>
+<figcaption>Authorization code flow</figcaption>
 </figure>
