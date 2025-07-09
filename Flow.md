@@ -36,4 +36,6 @@ sequenceDiagram
     Client -->> OP: (5) Authorization Code
 ```
 
-<figure><figcaption>Authorization code flow</figcaption></figure>
+<figure>
+  <figcaption>Authorization code flow</figcaption>
+</figure>
