@@ -21,9 +21,7 @@ The Authorization Code Flow returns an Authorization Code to the Client, which c
 
 The flow described by these steps is illustrated as follows:
 
-<<figure>
-  <figcaption>Authorization code flow</figcaption>
-  <pre class="mermaid">sequenceDiagram
+<pre class="mermaid">sequenceDiagram
 participant EndUser as "End-User"
 participant UserAgent as "User-Agent"
 participant Client
@@ -35,4 +33,5 @@ OP -->> UserAgent: (3) Authorization Code
 UserAgent ->> Client: (4) Authorization Code & Redirect URI
 Client -->> OP: (5) Authorization Code
 </pre>
+  <figcaption>Authorization code flow</figcaption>
 </figure>
