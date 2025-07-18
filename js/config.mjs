@@ -250,7 +250,15 @@ loadRespecWithConfiguration({
   },
 
   postProcess: [
-    (config, document, utils) => {
+    async (config, document, utils) => {
+      const mermaidFigures = document.querySelectorAll('.mermaid');
+      for (const figure of mermaidFigures) {
+        const figureName = figure.dataset.figureName;
+        if (figureName) {
+          const fetchSource = await fetch(`./media/${figureName}`);
+          figure.prepend(document.createTextNode(await fetchSource.text()))
+        }
+      }
       window.respecMermaid.createFigures(config, document, utils);
     }
   ]
