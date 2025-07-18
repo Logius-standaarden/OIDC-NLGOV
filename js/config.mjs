@@ -1,4 +1,6 @@
 import { loadRespecWithConfiguration } from "https://logius-standaarden.github.io/publicatie/respec/organisation-config.mjs";
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: false });
 
 loadRespecWithConfiguration({
   useLogo: true,
@@ -252,14 +254,23 @@ loadRespecWithConfiguration({
   postProcess: [
     async (config, document, utils) => {
       const mermaidFigures = document.querySelectorAll('.mermaid');
+      const generatedFigures = [];
       for (const figure of mermaidFigures) {
         const figureName = figure.dataset.figureName;
         if (figureName) {
           const fetchSource = await fetch(`./media/${figureName}`);
-          figure.prepend(document.createTextNode(await fetchSource.text()))
+          const preElement = document.createElement('pre');
+          preElement.classList.add('mermaid');
+          preElement.prepend(document.createTextNode(await fetchSource.text()));
+          figure.replaceWith(preElement);
+          generatedFigures.push(preElement);
+        } else {
+          generatedFigures.push(figure);
         }
       }
-      window.respecMermaid.createFigures(config, document, utils);
+      mermaid.run({
+        nodes: generatedFigures,
+      });
     }
   ]
 

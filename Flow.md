@@ -21,4 +21,4 @@ The Authorization Code Flow returns an Authorization Code to the Client, which c
 
 The flow described by these steps is illustrated as follows:
 
-<div class="mermaid" data-figure-name="authorization-code-flow.md"></div>
+<div class="mermaid" data-figure-name="authorization-code-flow.mermaid"></div>
