@@ -12,3 +12,7 @@ sequenceDiagram
     UserAgent ->> Client: (4) Authorization Code & Redirect URI
     Client -->> OP: (5) Authorization Code
 ```
+
+<figure id='authorization_code_flow'>
+  <figcaption>Authorization code flow</figcaption>
+</figure>
