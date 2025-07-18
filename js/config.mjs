@@ -250,13 +250,8 @@ loadRespecWithConfiguration({
   },
 
   postProcess: [
-    () => {
-      const figures = document.querySelectorAll("pre.mermaid");
-      for (const pre of figures) {
-        if (!pre.textContent?.trim()) continue; // Skip empty or invalid blocks
-        window.respecMermaid.createFigures();
-        break; // Only call once; the plugin processes all at once
-      }
+    (config, document, utils) => {
+      window.respecMermaid.createFigures(config, document, utils);
     }
   ]
 
