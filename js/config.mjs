@@ -1,4 +1,8 @@
-let respecConfig = {
+import { loadRespecWithConfiguration } from "https://logius-standaarden.github.io/publicatie/respec/organisation-config.mjs";
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: false });
+
+loadRespecWithConfiguration({
   useLogo: true,
   useLabel: true,
   license: "cc-by",
@@ -8,7 +12,7 @@ let respecConfig = {
   shortName: "oidc",
   publishDate: "2023-09-18",
   publishVersion: "1.0.1",
-  
+
   previousPublishVersion: [],
   previousPublishDate: "2021-02-18",
   previousMaturity: "WV",
@@ -34,7 +38,7 @@ let respecConfig = {
         name: "Martin van der Plas",
         company: "Logius",
         companyURL: "https://logius.nl",
-       },
+      },
       {
         name: "Alexander Green",
         company: "Logius",
@@ -62,27 +66,19 @@ let respecConfig = {
         name: "Jan Geert Koops",
         company: "Dictu",
         companyURL: "https://www.dictu.nl/",
-      }      
+      }
     ],
   github: "https://github.com/Logius-standaarden/OIDC-NLGOV/",
 
 
   // Create PDF and link to file in header (optional):
   alternateFormats: [
-      {
-          label: "pdf",
-          uri: "OpenID-NLGov.pdf",
-      },
+    {
+      label: "pdf",
+      uri: "OpenID-NLGov.pdf",
+    },
   ],
   localBiblio: {
-    "ebMS3": {
-      href: "https://docs.oasis-open.org/ebxml-msg/ebms/v3.0/core/ebms_core-3.0-spec.pdf",
-      title:
-        "OASIS ebXML Messaging Services 3 Version 3.0: Part 1, Core Features",
-      authors: ["Ian Jones", "Pete Wenzel"],
-      date: "October 2007",
-      publisher: "OASIS",
-    },
     "BPSS": {
       href: "http://www.ebxml.org/specs/ebBPSS.pdf",
       title:
@@ -170,7 +166,7 @@ let respecConfig = {
       href: "https://openid.net/specs/openid-connect-core-1_0.html",
       title: "OpenID Connect Core 1.0",
       authors: [
-        "N. Sakimura", "J. Bradley", "M. B. Jones", 
+        "N. Sakimura", "J. Bradley", "M. B. Jones",
         "B. de Medeiros", "C. Mortimore"],
       date: "2014",
       publisher: "The OpenID Foundation",
@@ -179,7 +175,7 @@ let respecConfig = {
       href: "https://openid.net/specs/openid-connect-discovery-1_0.html",
       title: "OpenID Connect Discovery 1.0",
       authors: [
-        "N. Sakimura", "J. Bradley", "M. Jones", 
+        "N. Sakimura", "J. Bradley", "M. Jones",
         "E. Jay"],
       date: "2014",
       publisher: "The OpenID Foundation",
@@ -211,7 +207,7 @@ let respecConfig = {
         "David Waite",
         "Joseph Heenan",
         "Ralph Bragg"
-        ],
+      ],
       date: "1 October, 2024",
       publisher: "The OpenID Foundation",
     },
@@ -227,17 +223,9 @@ let respecConfig = {
       href: "https://openid.net/specs/openid-connect-federation-1_0-12.html",
       title: "OpenID Connect Federation 1.0 - draft 12",
       authors: [
-      "R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
+        "R. Hedberg", "M. Jones", "A. Solberg", "S. Gulliksson", "J. Bradley"],
       date: "June 30, 2020",
       published: "The OpenID Foundation",
-    },
-    "PKI-CA": {
-      href: "https://www.logius.nl/diensten/pkioverheid/aansluiten-als-tsp/toegetreden-vertrouwensdienstverleners",
-      title:
-        "Toegetreden vertrouwensdienstverleners",
-      authors: [""],
-      date: "2018",
-      publisher: "Logius",
     },
     "PKI.Policy": {
       href: "https://www.logius.nl/sites/default/files/public/bestanden/diensten/PKIoverheid/Deel2-eisen-voor-TSPs-v4.7.pdf",
@@ -261,15 +249,29 @@ let respecConfig = {
       date: "September 2017",
       publisher: "The Standardisation Forum (NL)",
     },
-    "UMMR10": {
-      href: "https://www.unece.org/fileadmin/DAM/cefact/umm/UMM_Revision_10_2001.zip",
-      title:
-        "UN/CEFACT Modelling Methodology (UMM) Revison 10",
-      authors: [""],
-      date: "2001",
-      publisher: "UN/CEFACT",
-    },
-},
+  },
 
-postProcess: [window.respecMermaid.createFigures],
-};
+  postProcess: [
+    async (config, document, utils) => {
+      const mermaidFigures = document.querySelectorAll('.mermaid');
+      const generatedFigures = [];
+      for (const figure of mermaidFigures) {
+        const figureName = figure.dataset.figureName;
+        if (figureName) {
+          const fetchSource = await fetch(`./media/${figureName}`);
+          const preElement = document.createElement('pre');
+          preElement.classList.add('mermaid');
+          preElement.prepend(document.createTextNode(await fetchSource.text()));
+          figure.replaceWith(preElement);
+          generatedFigures.push(preElement);
+        } else {
+          generatedFigures.push(figure);
+        }
+      }
+      mermaid.run({
+        nodes: generatedFigures,
+      });
+    }
+  ]
+
+});
