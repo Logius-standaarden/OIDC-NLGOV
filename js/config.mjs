@@ -69,14 +69,6 @@ loadRespecWithConfiguration({
     ],
   github: "https://github.com/Logius-standaarden/OIDC-NLGOV/",
 
-
-  // Create PDF and link to file in header (optional):
-  alternateFormats: [
-    {
-      label: "pdf",
-      uri: "OpenID-NLGov.pdf",
-    },
-  ],
   localBiblio: {
     "BPSS": {
       href: "http://www.ebxml.org/specs/ebBPSS.pdf",
