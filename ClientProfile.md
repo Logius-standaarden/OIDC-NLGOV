@@ -199,9 +199,13 @@ Clients MUST verify the following in received ID tokens:
 
 - The Level of Assurance received in the `acr` Claim is at least the Level of Assurance requested. See also [Section 5.2.3](#authentication-context). This is in line with [[OpenID.Core]], Section 3.1.3.7.
 
-`represents`
+`authorization_details`
 
-- The `represents` Claim, if applicable, identifies the represented service consumer on behalf of which the End-User intends to authenticate. Any Client MUST be able to process `represents` Claims. As an exception, `represents` Claims MAY be ignored by the Client if, and only if, it is explicitly agreed upon beforehand that no Representation will be provided.
+- OPTIONAL. The claim `authorization_details` contains a JSON array of JSON objects representing the rights of the access token. Each JSON object contains the data to specify the authorization requirements for a certain type of resource. This can be used to solve representation. See [[[RFC9396]]].
+
+`act`, `may_act`
+
+- OPTIONAL. The `act` claim identifies the immediate actor (e.g., an application or service acting on behalf of a user), while the `may_act` claim specifies which principals the token-holder is authorized to act on behalf of, enabling clear representation and delegation chains. See §4.1 and §4.4 of [[[RFC8693]]].
 
 ## Discovery
 
