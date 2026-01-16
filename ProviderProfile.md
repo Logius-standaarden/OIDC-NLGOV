@@ -49,10 +49,6 @@ The Token Response includes an Access Token (which can be used to make a UserInf
 
 - REQUIRED. The identifier of the authenticated End-User, also known as the subject. OpenID Providers MUST support a pairwise identifier in accordance with the OpenID Connect specification [[OpenID.Core]], section 8.1. See [Pairwise Identifiers](#pairwise-identifiers) on when it may be useful to relax this requirement. Identical as in [[OpenID.iGov]].
 
-`sub_id_type`
-
-- OPTIONAL. The type of identifier passed in the `sub` Claim. In order to support multiple types of identifiers in an interoperable way, the type of identifier used for the identifier in the `sub` Claim SHOULD be explicitly included. The value of the `sub_id_type` MUST be a URI. Values supported by the OpenID Provider are provided via the [Discovery endpoint](#discovery-endpoint).
-
 `acr`
 
 - OPTIONAL. The LoA the End-User was authenticated at. MUST be at least the requested Level of Assurance value requested by the Client (either via the `acr_values` or `claims` parameters) or - if none was requested - a Level of Assurance established through prior agreement. See also [Section 5.2.3](#authentication-context). As eIDAS is leading in most scenarios targeted by this profile, using the `acr` Claim to express the Level of Assurance is preferred over Vectors of Trust (`vot`).
@@ -73,13 +69,13 @@ The Token Response includes an Access Token (which can be used to make a UserInf
 
 - REQUIRED. The `expiration`, `issued at`, and `not before` timestamps indicate when the token expires, was issued and becomes valid, respectively. The expiration time for ID Tokens is specific to the OpenID Provider. In line with [[OpenID.iGov]].
 
-`represents`
+`authorization_details`
 
-- REQUIRED in case Representation is applicable, the `represents` Claim provides information about the effective authorization due to a Representation Relationship for the End-User.
+- OPTIONAL. The claim `authorization_details` contains a JSON array of JSON objects representing the rights of the access token. Each JSON object contains the data to specify the authorization requirements for a certain type of resource. This can be used to solve representation. See [[[RFC9396]]].
 
-`alt_sub`
+`act`, `may_act`
 
-- OPTIONAL. Describes alternative Subject Identifiers for the authenticated End-User in the context of a specific audience. The value of `alt_sub` is an array of objects, each of which MUST contain `sub` and `aud` Claims to uniquely identify the authenticated End-User and the audience for the alternative Subject Identifier and SHOULD contain a `sub_id_type` Claim to explicitly indicate the type of identifier used in the `sub` claim if the OpenID Provider supports multiple types of subject identifiers.
+- OPTIONAL. The `act` claim identifies the immediate actor (e.g., an application or service acting on behalf of a user), while the `may_act` claim specifies which principals the token-holder is authorized to act on behalf of, enabling clear representation and delegation chains. See §4.1 and §4.4 of [[[RFC8693]]].
 
 `vot`
 
@@ -90,51 +86,6 @@ The Token Response includes an Access Token (which can be used to make a UserInf
 - REQUIRED if `vot` is provided. The trustmark URI as specified in Vectors of Trust. See also [Section 5.2.4](#vectors-of-trust).
 
 Other Claims MAY be included. See Claims Request below on how such Claims SHOULD be requested by the Client to be provided by the OpenID Provider.
-
-<aside class="example">
-  
-This example ID Token has been signed using the server's RSA key:
-<pre>
-            eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE0MTg2OTk0
-            MTIsInN1YiI6IjZXWlFQcG5ReFYiLCJzdWJfaWRfd
-            HlwZSI6InVybjpubC1laWQtZ2RpOjEuMDppZDpwc2
-            V1ZG9ueW0iLCJub25jZSI6IjE4ODYzN2IzYWYxNGE
-            iLCJhdWQiOlsiYzFiYzg0ZTQtNDdlZS00YjY0LWJi
-            NTItNWNkYTZjODFmNzg4Il0sImFsdF9zdWIiOlt7I
-            mF1ZCI6IjM3OWIwMjJkLWQ5ZDAtNGM0My1iN2RlLT
-            I5MGEwMjNlYjQ2MSIsInN1YiI6InhTSENyRm05Qkc
-            iLCJzdWJfaWRfdHlwZSI6InVybjpubC1laWQtZ2Rp
-            OjEuMDppZDpwc2V1ZG9ueW0ifV0sImlzcyI6Imh0d
-            HBzOi8vaWRwLXAuZXhhbXBsZS5jb20vIiwiYWNyIj
-            oiaHR0cDovL2VpZGFzLmV1cm9wYS5ldS9Mb0Evc3V
-            ic3RhbnRpYWwiLCJpYXQiOjE0MTg2OTg4MTIsImp0
-            aSI6ImE2NWM1NjBkLTA4NWMtNDY2ZS05N2M1LWY4N
-            jM5ZmNhNWVhNyIsIm5iZiI6MTQxODY5OTExMn0
-</pre>
-Its Claims are as follows:
-<pre>
-     {
-            "auth_time": 1418698782,
-            "exp": 1418699412,
-            "sub": "6WZQPpnQxV",
-            "sub_id_type": "urn:nl-eid-gdi:1.0:id:pseudonym",
-            "nonce": "188637b3af14a",
-            "aud": [
-              "c1bc84e4-47ee-4b64-bb52-5cda6c81f788"
-            ],
-            "alt_sub": [{
-              "aud": "379b022d-d9d0-4c43-b7de-290a023eb461",
-              "sub": "xSHCrFm9BG",
-              "sub_id_type": "urn:nl-eid-gdi:1.0:id:pseudonym"
-            }],
-            "iss": "https://idp-p.example.com/",
-            "acr": "http://eidas.europa.eu/LoA/substantial",
-            "iat": 1418698812,
-            "jti": "a65c560d-085c-466e-97c5-f8639fca5ea7",
-            "nbf": 1418699112,
-      }
-</pre>
-</aside>
 
 ### Pairwise Identifiers
 
@@ -147,57 +98,6 @@ OpenID Providers MUST support pairwise identifiers for cases where correlation o
 *Burgerservicenummers (BSN)*, *Rechtspersonen en Samenwerkingsverbanden Identificatienummers (RSIN)* and *Kamer van Koophandel (KvK) nummers* are considered public sectoral identifiers and therefore MUST NOT be used as Subject Identifiers in case correlation of End-User's activities across Clients is not appropriate. In such cases, the use of Polymorphic Pseudonyms or Polymorphic Identities is preferred.
 
 > Note that BSNs MUST only be used by Relying Parties for Services eligible for using the BSN according to Dutch Law and that the BSN, or token containing it, SHOULD be encrypted.
-
-### Representation Relationships
-
-In Use Cases that involve Representation Relationships, Representation Relationships are explicitly mentioned in the form of a `represents` Claim, analogous to the Delegation Semantics specified in [[RFC8693]].
-
-<p class="note" title="Token Exchange in Assurance profile for OAuth 2.0">
-  Token Exchange [[RFC8693]] will be included in the upcoming release of the [[[OAuth2.NLGov]]]. See the section in the latest draft: https://logius-standaarden.github.io/OAuth-NL-profiel/#grant-types
-</p>
-
-> **Note**: Whereas [[RFC8693]] lists the End-User in the `act` or `may_act` Claims and the represented service consumer in the `sub` Claim, this is reversed in this profile: the End-User is listed in the `sub` Claim and the represented service consumer is listed in the `represents` Claim. Reason for this is to mitigate the risk that a Client that does not explicitly supports the Representation Use Cases cannot recognize the difference between an End-User that authenticates on behalf of himself or on behalf of someone else via Representation.
-
-As such, all Clients MUST process `represents` Claims used, in case Representation can be applicable in the context of the OpenID Client and OpenID Provider. As an exception, `represents` Claims MAY be ignored by the Client if, and only if, it is explicitly agreed upon beforehand that no Representation will be provided.
-
-This profile specifies Representation Relations in ID Tokens as follows:
-
-- The End-User is always identified by the `sub` Claim;
-- The represented service consumer is mentioned in the `represents` Claim.
-- In case a chain representation is applicable, the representation chain is represented as a series of nested `represents` Claims with the represented service consumer listed as the deepest nested `represents` Claim.
-- Each `represents` Claim MUST contain `sub` and `iss` Claims to uniquely identify the represented party and SHOULD contain a `sub_id_type` Claim to explicitly indicate the type of identifier used in the `sub` claim if the OpenID Provider supports multiple types of subject identifiers.
-- `represents` Claims MAY contain additional Claims (e.g. `email`) to provide additional useful information about the represented party.
-- Claims within the `represents` Claim pertain only to the identity of that party and MUST NOT contain Claims that are not related to the represented party, such as top-level Claims `exp`, `nbf`, and `aud`.
-
-<aside class="example">
-A sample chain representation for a requested scope `urn:uuid:a9e17a2e-d358-406d-9d5f-ad6045f712ba` may look like (note: the requested scope also includes the required `openid` scope; Claims that do not add to the example are omitted for readability):
-<pre>
-      {
-        "scope": "openid urn:uuid:a9e17a2e-d358-406d-9d5f-ad6045f712ba",
-        /* End-User - representing the service consumer */
-        "sub": "RKyLpEVr1L",
-        "sub_id_type": "urn:nl-eid-gdi:1.0:id:pseudonym",
-        "iss": "urn:uuid:b556992a-e233-4fdc-915a-e2b52d3cc355",
-        "represents": {
-          /* Intermediary in representation chain - an organization in this example */
-          "sub": "492099595",
-          "sub_id_type": "urn:nl-eid-gdi:1.0:id:RSIN",
-          "iss": "urn:uuid:28e0686f-20ff-41bd-8520-57b9c68cc9a3",
-          "alt_sub": {
-            "sub": "27381312",
-            "sub_id_type": "urn:nl-eid-gdi:1.0:id:KvKnr",
-            "iss": "urn:uuid:ebc29845-d35f-4c6a-bbb2-a59fdcb1cc6b"
-          }
-          "represents": {
-            /* service consumer - represented by the End-User */
-            "sub": "4Yg8u72NxR",
-            "sub_id_type": "urn:nl-eid-gdi:1.0:id:pseudonym",
-            "iss": "urn:uuid:55291cc0-fd2a-4eb6-b444-5b2783e62673"
-          }
-        }
-      }
-</pre>
-</aside>
 
 ### Authentication Context
 
@@ -359,10 +259,6 @@ This profile imposes the following requirements upon the Discovery document:
 `claim_types_supported`
 
 - OPTIONAL. JSON array containing the list of Claim types that the OpenID Provider supports. REQUIRED when `aggregated` or `distributed` Claims are used. If omitted, the OpenID Provider only supports `normal` Claims. Identical to [[OpenID.Discovery]].
-
-`sub_id_types_supported`
-
-- OPTIONAL. JSON array containing the list of supported types of Subject Identifiers in the `sub` Claim of ID Tokens. The values MUST be URIs, the exact URIs to be used are situation specific; as an example encrypted BSNs and Pseudonyms could be specified with `urn:nl-eid-gdi:1.0:id:BSN` or `urn:nl-eid-gdi:1.0:id:Pseudonym` respectively.
 
 `acr_values_supported`
 
