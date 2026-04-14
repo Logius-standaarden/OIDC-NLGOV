@@ -153,7 +153,7 @@ OpenID Providers MUST support pairwise identifiers for cases where correlation o
 In Use Cases that involve Representation Relationships, Representation Relationships are explicitly mentioned in the form of a `represents` Claim, analogous to the Delegation Semantics specified in [[RFC8693]].
 
 <p class="note" title="Token Exchange in Assurance profile for OAuth 2.0">
-  Token Exchange [[RFC8693]] will be included in the upcoming release of the [[[OAuth2.NLGov]]]. See the section in the latest draft: https://logius-standaarden.github.io/OAuth-NL-profiel/#grant-types
+  Token Exchange [[RFC8693]] will be included in the upcoming release of the [[[OAuth2.NLgov]]]. See the section in the latest draft: https://logius-standaarden.github.io/OAuth-NL-profiel/#grant-types
 </p>
 
 > **Note**: Whereas [[RFC8693]] lists the End-User in the `act` or `may_act` Claims and the represented service consumer in the `sub` Claim, this is reversed in this profile: the End-User is listed in the `sub` Claim and the represented service consumer is listed in the `represents` Claim. Reason for this is to mitigate the risk that a Client that does not explicitly supports the Representation Use Cases cannot recognize the difference between an End-User that authenticates on behalf of himself or on behalf of someone else via Representation.
@@ -219,7 +219,7 @@ OpenID Providers MAY provide `vot` (Vectors of Trust) and `vtm` (Vector Trust Ma
 
 ### Access Tokens
 
-This profile requires an Access Token to be in JWT form. This is in line with the underlying NL GOV Assurance profile for OAuth 2.0 [[OAuth2.NLGov]].
+This profile requires an Access Token to be in JWT form. This is in line with the underlying NLgov Assurance profile for OAuth 2.0 [[OAuth2.NLgov]].
 
 Using a JWT formatted Access Token allows any OpenID Client to consume and verify a token without the need for introspection, thus reducing the dependency on an interaction with an external endpoint. As a result this may reduce load and availability requirements on the OpenID Provider. Furthermore, it provides a more uniform format over Access Token, ID Token, UserInfo response and Introspection response.
 
@@ -566,11 +566,11 @@ Please refer to [Algorithms](#algorithms) for more information on eligible crypt
 
 ## Dynamic Registration
 
-If the OpenID Provider is acting as an NL-Gov OAuth Authorization Server [[OAuth2.NLGov]], then Dynamic Registration MUST be supported in accordance with Section 3.1.3 of that specification.
+If the OpenID Provider is acting as an NLgov OAuth Authorization Server [[OAuth2.NLgov]], then Dynamic Registration MUST be supported in accordance with Section 3.1.3 of that specification.
 
 Dynamic Registration MUST also be supported in combination with per-instance provisioning of secrets when registering Native Applications as confidential Clients.
 
-In other cases, particularly when dealing with Browser-based applications or Native Apps, Dynamic Registration SHOULD be supported in accordance with the NL GOV Assurance profile for OAuth 2.0 [[OAuth2.NLGov]].
+In other cases, particularly when dealing with Browser-based applications or Native Apps, Dynamic Registration SHOULD be supported in accordance with the NLgov Assurance profile for OAuth 2.0 [[OAuth2.NLgov]].
 
 This profile imposes the following requirements upon the Client Registration request:
 

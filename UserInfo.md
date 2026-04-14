@@ -52,7 +52,7 @@ It is up to the Client to assess the level of confidence provided by the OpenID 
 
 In order to provide a source, including integrity and optionally confidentiality, an OpenID Provider SHOULD be able to provide aggregated or support distributed Claims. The signee of such aggregated or distributed Claims implies the source and can support in assessing the level confidence or quality of the Claim.
 
-For identity assurance there is a standardised extension in [[[OpenID.Identity_Assurance]]]. It allows for use under different regulations, such as eIDAS. Below is an example of how to apply eIDAS within the NLGov profile.
+For identity assurance there is a standardised extension in [[[OpenID.Identity_Assurance]]]. It allows for use under different regulations, such as eIDAS. Below is an example of how to apply eIDAS within the NLgov profile.
 
 ### Identity assurance on eIDAS level
 

@@ -1,4 +1,4 @@
-## OIDC NL GOV profiel
+## NLgov Assurance profile for OpenID Connect 1.0
 
 Deze versie:
     https://gitdocumentatie.logius.nl/publicatie/api/oidc/1.0.1 
