@@ -227,7 +227,7 @@ loadRespecWithConfiguration({
       publisher: "Logius",
     },
     "SG.TLS": {
-      href: "https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1",
+      href: "https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS",
       title: "IT Security Guidelines for Transport Layer Security (TLS) v2.1",
       authors: [""],
       date: "19-01-2021",
