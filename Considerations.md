@@ -16,7 +16,7 @@ Additionally, Clients SHOULD ensure they minimize the scope and audience they re
 Token Exchange [[RFC8693]] SHOULD be used to request Access Tokens with a minimal scope and audience.
 
 <p class="note" title="Token Exchange in Assurance profile for OAuth 2.0">
-  Token Exchange [[RFC8693]] will be included in the upcoming release of the [[[OAuth2.NLGov]]]. See the section in the latest draft: https://logius-standaarden.github.io/OAuth-NL-profiel/#grant-types
+  Token Exchange [[RFC8693]] will be included in the upcoming release of the [[[OAuth2.NLgov]]]. See the section in the latest draft: https://logius-standaarden.github.io/OAuth-NL-profiel/#grant-types
 </p>
 
 > Note that per-instance registration of Native Clients can increase the risk of Client -- and thus End-User -- observability and traceability. This because the `client_id` is unique, can be linked to an individual and may be observed. The `client_id` SHOULD be considered and treated as sensitive data in case per-instance registration is applied.

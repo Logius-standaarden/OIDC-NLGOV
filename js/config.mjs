@@ -85,7 +85,7 @@ loadRespecWithConfiguration({
     },
     "LO.GBA": {
       href: "https://www.rvig.nl/lo-brp",
-      title: " Logisch ontwerp BRP",
+      title: "Logisch ontwerp BRP",
       authors: [""],
       date: "1 april, 2025",
       publisher: "RvIG",
@@ -121,10 +121,10 @@ loadRespecWithConfiguration({
       status: "Internet-Draft",
       publisher: "IETF OAuth Working Group",
     },
-    "OAuth2.NLGov": {
+    "OAuth2.NLgov": {
       href: "https://gitdocumentatie.logius.nl/publicatie/api/oauth/",
       title:
-        "NL GOV Assurance profile for OAuth 2.0",
+        "NLgov Assurance profile for OAuth 2.0",
       authors: ["F. Terpstra", "J. van Gelder"],
       date: "july 2020",
       publisher: "Logius",
@@ -202,9 +202,9 @@ loadRespecWithConfiguration({
       date: "1 October, 2024",
       publisher: "The OpenID Foundation",
     },
-    "OpenID.NLGov": {
+    "OpenID.NLgov": {
       href: "https://gitdocumentatie.logius.nl/publicatie/api/oidc/",
-      title: "NL GOV Assurance profile for OpenID Connect 1.0",
+      title: "NLgov Assurance profile for OpenID Connect 1.0",
       authors: [
         "R. Schaar", "F. van Es", "J. Joosten", "J. G. Koops"],
       date: "2021",
@@ -227,8 +227,8 @@ loadRespecWithConfiguration({
       publisher: "Logius",
     },
     "SG.TLS": {
-      href: "https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1",
-      title: " IT Security Guidelines for Transport Layer Security (TLS) v2.1",
+      href: "https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS",
+      title: "IT Security Guidelines for Transport Layer Security (TLS) v2.1",
       authors: [""],
       date: "19-01-2021",
       publisher: "NCSC",
@@ -242,5 +242,5 @@ loadRespecWithConfiguration({
     },
   },
 
-  postProcess: [ generateMermaidFigures ]
+  postProcess: [generateMermaidFigures]
 });

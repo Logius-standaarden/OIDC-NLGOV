@@ -33,7 +33,7 @@ Definitions for these terms as well as for the abbreviations used throughout thi
 
 As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
 
-This profile is based upon the 'International Government Assurance Profile (iGov) for OpenID Connect 1.0' [[OpenID.iGov]] as published by the [OpenID Foundation](https://openid.net/foundation/). It should be considered a fork of this profile, as the iGov profile is geared more towards a United States context and this NL GOV profile towards a Dutch context with European Union regulations applicable.
+This profile is based upon the 'International Government Assurance Profile (iGov) for OpenID Connect 1.0' [[OpenID.iGov]] as published by the [OpenID Foundation](https://openid.net/foundation/). It should be considered a fork of this profile, as the iGov profile is geared more towards a United States context and this NLgov profile towards a Dutch context with European Union regulations applicable.
 
 This specification defines requirements for the following components:
 
@@ -44,12 +44,12 @@ The specification also defines features for interaction between these components
 
 - Relying Party to Identity Provider
 
-When an NL GOV-compliant component is interacting with other NL GOV-compliant components, in any valid combination, all components MUST fully conform to the features and requirements of this specification. All interaction with non-NL GOV components is outside the scope of this specification.
+When an NLgov-compliant component is interacting with other NLgov-compliant components, in any valid combination, all components MUST fully conform to the features and requirements of this specification. All interaction with non- NLgov components is outside the scope of this specification.
 
-An NL GOV-compliant OpenID Connect Identity Provider MUST support all features as described in this specification. A general-purpose Identity Provider MAY support additional features for use with non-NL GOV Clients.
+An NLgov-compliant OpenID Connect Identity Provider MUST support all features as described in this specification. A general-purpose Identity Provider MAY support additional features for use with non- NLgov Clients.
 
-An NL GOV-compliant OpenID Connect Identity Provider MAY also provide NL GOV-compliant OAuth 2.0 Authorization Server functionality. In such cases, the Authorization Server MUST fully implement the NL GOV Assurance profile for OAuth 2.0 [[OAuth2.NLGov]]. If an NL GOV-compliant OpenID Connect Identity Provider does not provide NL GOV-compliant OAuth 2.0 Authorization Server services, all features related to interaction between the Authorization Server and protected resource are OPTIONAL.
+An NLgov-compliant OpenID Connect Identity Provider MAY also provide NLgov-compliant OAuth 2.0 Authorization Server functionality. In such cases, the Authorization Server MUST fully implement the NLgov Assurance profile for OAuth 2.0 [[OAuth2.NLgov]]. If an NLgov-compliant OpenID Connect Identity Provider does not provide NLgov-compliant OAuth 2.0 Authorization Server services, all features related to interaction between the Authorization Server and protected resource are OPTIONAL.
 
-An NL GOV-compliant OpenID Connect Client MUST support all required functionality described in this specification. A general-purpose Client library MAY support additional features for use with non-NL GOV OpenID Connect Identity Providers.
+An NLgov-compliant OpenID Connect Client MUST support all required functionality described in this specification. A general-purpose Client library MAY support additional features for use with non- NLgov OpenID Connect Identity Providers.
 
-> Note that the original concept of the [[?OpenID.NLGov]] profile was published on logius.gitlab.io as version 1.0 in February 2021 with the title "NL GOV Assurance profile for OpenID Connect 1.0".
+> Note that the original concept of the [[?OpenID.NLgov]] profile was published on logius.gitlab.io as version 1.0 in February 2021 with the title " NLgov Assurance profile for OpenID Connect 1.0".
