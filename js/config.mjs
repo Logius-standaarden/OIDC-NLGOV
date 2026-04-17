@@ -21,27 +21,27 @@ loadRespecWithConfiguration({
       {
         name: "Remco Schaar",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Frank van Es",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Pieter Hering",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Martin van der Plas",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Alexander Green",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       }
     ],
   authors:
@@ -49,12 +49,12 @@ loadRespecWithConfiguration({
       {
         name: "Remco Schaar",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Frank van Es",
         company: "Logius",
-        companyURL: "https://logius.nl",
+        companyURL: "https://www.logius.nl",
       },
       {
         name: "Joris Joosten",
