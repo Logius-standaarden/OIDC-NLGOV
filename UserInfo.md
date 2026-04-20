@@ -7,6 +7,81 @@ The availability, quality and reliability of an individual's identity attributes
 As per Section 5.1.2 of [[OpenID.Core]], Claim names SHOULD be collision-resistant. It is RECOMMENDED to use domain name based URIs as attribute names.
 
 [[OpenID.Core]] Section 5.1 specifies a list of standard Claims. In a Dutch governmental context, attribute Claims are commonly registered in the BRP (_Basis Registratie Personen_, the Dutch citizen registry), as defined in [[?LO.GBA]]. Note that some of the standard Claims of OpenID Connect do not map directly or correctly with BRP attributes. BRP attributes SHOULD be prefered over OpenID Connect claims for attributes.
+
+<aside class="example">
+  
+The following example demonstrates the interoperability issues between the Dutch naming system and standard claims. We show the possible use of the `family_name_affix` attribute in combination with the standard claim set.
+Below is a sample payload from an OIDC ID Token or `userinfo` endpoint response:
+<pre>
+{
+  "sub": "abc123",
+  "name": "Jan van den Broek",
+  "given_name": "Jan",
+  "family_name": "Broek",
+  "family_name_affix": "van den",
+  "preferred_username": "j.broek",
+  "email": "jan.broek@voorbeeld.nl",
+  "email_verified": true,
+  "updated_at": 1719859200
+}
+
+</pre>
+- `family_name_affix` is a custom claim that allows parsing/sorting systems to treat the affix separately.
+- `name` remains intact for display purposes.
+- `family_name` only includes the given surname for structured or legal purposes.
+
+In order to make this easier to validate, one could define a json schema that represents the structure of a persons profile. Below is just an **imaginary example**.
+
+<pre>
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NL GOV OIDC Extended User Profile",
+  "type": "object",
+  "properties": {
+    "sub": {
+      "type": "string",
+      "description": "Subject identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full display vv"
+    },
+    "given_name": {
+      "type": "string",
+      "description": "Given name(s)"
+    },
+    "family_name": {
+      "type": "string",
+      "description": "Family name without affix"
+    },
+    "family_name_affix": {
+      "type": "string",
+      "description": "Name affix or prefix used in Dutch surnames (e.g., 'van der', 'de')"
+    },
+    "preferred_username": {
+      "type": "string",
+      "description": "Preferred username"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "email_verified": {
+      "type": "boolean"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": ["sub", "name", "given_name", "family_name", "email", "email_verified"]
+}
+
+</pre>
+
+> **Implementation notes:** OIDC servers based on Keycloak, Auth0, etc., allow custom claims via user attribute mappings or protocol mappers. Relying parties can choose to use family_name_affix if needed — otherwise, it’s ignored. 
+</aside>
+
 Additionally, usage of, or interoperability with, the ISA<sup>2</sup> core vocabularies is RECOMMENDED.
 
 ## Claims Supported
